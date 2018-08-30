@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridButton : MonoBehaviour {
+public class Cell {
 
-	public GridElement buttonData;
-
+	public int row;
+	public int column;
+	public int value;
+	public bool isTarget;
+	public int targetValue;
+	public bool isUsed;
 
 	// Use this for initialization
 	void Start () {

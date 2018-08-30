@@ -23,9 +23,9 @@ GameObject:
   - component: {fileID: 114754615393686962}
   - component: {fileID: 114862427009181166}
   - component: {fileID: 114256579128563020}
-  - component: {fileID: 114932526521889344}
+  - component: {fileID: 114914184809080518}
   m_Layer: 5
-  m_Name: GridButton
+  m_Name: GameFieldButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 222952108842868398}
   - component: {fileID: 114844110721202164}
   m_Layer: 5
-  m_Name: GridButtonValueText
+  m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,9 +117,9 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 27079fef59b64ed49892f2954494e41f, type: 3}
     m_FontSize: 24
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 0
-    m_MaxSize: 40
+    m_BestFit: 1
+    m_MinSize: 12
+    m_MaxSize: 24
     m_Alignment: 4
     m_AlignByGeometry: 1
     m_RichText: 1
@@ -169,7 +169,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &114932526521889344
+--- !u!114 &114914184809080518
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -177,9 +177,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1022196485620804}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baed6b5f6b65645499e4fd87dd956c8a, type: 3}
+  m_Script: {fileID: 11500000, guid: b66f5cfde3da0d14ab431e93bf0f99f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  row: 0
+  column: 0
+  value: 0
 --- !u!222 &222395769633906466
 CanvasRenderer:
   m_ObjectHideFlags: 1
