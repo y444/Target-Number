@@ -2,32 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Level : MonoBehaviour {
+public class Level{
 
-	public int rows;
-	public int columns;
-	public int maxValue;
-	public int numberOfTargets;
-	[HideInInspector] public Cell[,] cells;
+	public int rows = 3;
+	public int columns = 3;
+	public int maxValue = 10;
+	public int numberOfTargets = 0;
+    public Cell[,] cells { get; private set; }
 
-	// Use this for initialization
-	void Start () {
+    public void GenerateCells(){
 		//initialize the array
 		cells = new Cell[rows,columns];
 
 		//populate the array with values
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
-				cells [i, j] = new Cell ();
-				cells [i, j].row = i;
-				cells [i, j].column = j;
-				cells [i, j].value = Random.Range (0, maxValue + 1);
-			}
+                cells[i, j] = new Cell
+                {
+                    row = i,
+                    column = j,
+                    value = Random.Range(0, maxValue + 1)
+                };
+            }
 		}
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

@@ -6,26 +6,26 @@ using UnityEngine.UI;
 public class GameField : MonoBehaviour {
 	[SerializeField] public GameObject gameFieldButton;
 
+    Level level;
+
 	// Use this for initialization
 	void Start () {
 		//instantiate buttons
-
-		//get level parameters
-		int rows = GameObject.Find("Logic").GetComponent<Level>().rows;
-		int columns = GameObject.Find("Logic").GetComponent<Level>().columns;
-		Cell[,] cells = GameObject.Find("Logic").GetComponent<Level>().cells;
+        //get level parameters
+        level = new Level();
+        level.GenerateCells();
 
 		//setup grid layout
-		this.GetComponent<GridLayoutGroup>().constraintCount = rows;
+		this.GetComponent<GridLayoutGroup>().constraintCount = level.rows;
 
 		//fill the field with buttons
-		for (int i = 0; i < rows; i++) {
-			for (int j = 0; j < columns; j++) {
+		for (int i = 0; i < level.rows; i++) {
+			for (int j = 0; j < level.columns; j++) {
 				CurrentCellData instantiatedCell = Instantiate (gameFieldButton, this.transform).GetComponent<CurrentCellData> ();
 				instantiatedCell.row = i;
 				instantiatedCell.column = j;
-				instantiatedCell.value = cells [i, j].value;
-				instantiatedCell.gameObject.GetComponentInChildren<Text>().text = cells [i, j].value.ToString();
+				instantiatedCell.value = level.cells [i, j].value;
+				instantiatedCell.gameObject.GetComponentInChildren<Text>().text = level.cells [i, j].value.ToString();
 			}
 		}
 	}
