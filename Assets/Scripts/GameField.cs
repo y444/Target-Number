@@ -16,7 +16,7 @@ public class GameField : MonoBehaviour {
         level.GenerateCells();
 
 		//setup grid layout
-		this.GetComponent<GridLayoutGroup>().constraintCount = level.rows;
+		this.GetComponent<GridLayoutGroup>().constraintCount = level.columns;
 
 		//fill the field with buttons
 		for (int i = 0; i < level.rows; i++) {
