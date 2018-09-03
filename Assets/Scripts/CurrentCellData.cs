@@ -7,6 +7,9 @@ public class CurrentCellData : MonoBehaviour {
 	public int row;
 	public int column;
 	public int value;
+	public bool isTarget;
+	public int targetValue;
+	public bool isUsed;
 
 	// Use this for initialization
 	void Start () {

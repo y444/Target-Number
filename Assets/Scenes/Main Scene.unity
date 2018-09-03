@@ -252,6 +252,28 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114860453397927432, guid: 9674e9c74f4ba8647b2b71cb51d83acb,
+        type: 2}
+      propertyPath: buttonDisabled
+      value: 
+      objectReference: {fileID: 21300000, guid: c87eeedcaad878640aa563d459d8bf73,
+        type: 3}
+    - target: {fileID: 114860453397927432, guid: 9674e9c74f4ba8647b2b71cb51d83acb,
+        type: 2}
+      propertyPath: GameFieldData
+      value: 
+      objectReference: {fileID: 752637674}
+    - target: {fileID: 114860453397927432, guid: 9674e9c74f4ba8647b2b71cb51d83acb,
+        type: 2}
+      propertyPath: buttonInactive
+      value: 
+      objectReference: {fileID: 21300000, guid: c87eeedcaad878640aa563d459d8bf73,
+        type: 3}
+    - target: {fileID: 114860453397927432, guid: 9674e9c74f4ba8647b2b71cb51d83acb,
+        type: 2}
+      propertyPath: gameFieldData
+      value: 
+      objectReference: {fileID: 752637674}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9674e9c74f4ba8647b2b71cb51d83acb, type: 2}
   m_IsPrefabParent: 0

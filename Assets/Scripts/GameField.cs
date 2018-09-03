@@ -21,11 +21,19 @@ public class GameField : MonoBehaviour {
 		//fill the field with buttons
 		for (int i = 0; i < level.rows; i++) {
 			for (int j = 0; j < level.columns; j++) {
+				// get cell
 				CurrentCellData instantiatedCell = Instantiate (gameFieldButton, this.transform).GetComponent<CurrentCellData> ();
+
+				//add value
 				instantiatedCell.row = i;
 				instantiatedCell.column = j;
 				instantiatedCell.value = level.cells [i, j].value;
+
+				//TODO this line has to be moved to ButtonStateEvents
 				instantiatedCell.gameObject.GetComponentInChildren<Text>().text = level.cells [i, j].value.ToString();
+
+				//add used flag
+				instantiatedCell.isUsed = level.cells[i,j].isUsed;
 			}
 		}
 	}

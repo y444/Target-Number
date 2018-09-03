@@ -25,6 +25,15 @@ public class Level{
                 };
             }
 		}
+
+		//treat all the zero valued buttons as used
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < columns; j++) {
+				if (cells [i, j].value == 0) {
+					cells [i, j].isUsed = true;
+				}
+			}
+		}
 	}
 	
 }
