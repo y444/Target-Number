@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameField : MonoBehaviour {
 	[SerializeField] public GameObject gameFieldButton;
 
-    Level level;
+	[HideInInspector] public Level level;
 
 	// Use this for initialization
 	void Start () {
@@ -28,9 +28,6 @@ public class GameField : MonoBehaviour {
 				instantiatedCell.row = i;
 				instantiatedCell.column = j;
 				instantiatedCell.value = level.cells [i, j].value;
-
-				//TODO this line has to be moved to ButtonStateEvents
-				instantiatedCell.gameObject.GetComponentInChildren<Text>().text = level.cells [i, j].value.ToString();
 
 				//add used flag
 				instantiatedCell.isUsed = level.cells[i,j].isUsed;

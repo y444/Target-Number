@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Level{
 
-	public int rows = 4;
-	public int columns = 10;
+	public int rows = 5;
+	public int columns = 5;
 	public int maxValue = 10;
-	public int numberOfTargets = 0;
+	public int numberOfTargets = 1;
     public Cell[,] cells { get; private set; }
 
     public void GenerateCells(){
