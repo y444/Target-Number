@@ -4,33 +4,30 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class GameField : MonoBehaviour {
-	[SerializeField] public GameObject gameFieldButton;
-
-	[HideInInspector] public Level level;
+	[HideInInspector] public GameFieldData gameFieldData;
+	public int rows;
+	public int columns;
+	public int maxValue;
+	public int numberOfTargets;
+	public GameObject Cell;
 
 	// Use this for initialization
 	void Start () {
-		//instantiate buttons
-        //get level parameters
-        level = new Level();
-        level.GenerateCells();
+		gameFieldData = new GameFieldData(rows, columns, maxValue, numberOfTargets);
 
 		//setup grid layout
-		this.GetComponent<GridLayoutGroup>().constraintCount = level.columns;
+		this.GetComponent<GridLayoutGroup>().constraintCount = columns;
 
 		//fill the field with buttons
-		for (int i = 0; i < level.rows; i++) {
-			for (int j = 0; j < level.columns; j++) {
-				// get cell
-				CurrentCellData instantiatedCell = Instantiate (gameFieldButton, this.transform).GetComponent<CurrentCellData> ();
-
-				//add value
-				instantiatedCell.row = i;
-				instantiatedCell.column = j;
-				instantiatedCell.value = level.cells [i, j].value;
-
-				//add used flag
-				instantiatedCell.isUsed = level.cells[i,j].isUsed;
+		for (int i = 0; i < rows; i++) {
+			for (int j = 0; j < columns; j++) {
+				Cell instantiatedCell = Instantiate (Cell, this.transform).GetComponent<Cell> ();
+				instantiatedCell.row = gameFieldData.cells[i,j].row;
+				instantiatedCell.column = gameFieldData.cells[i,j].column;
+				instantiatedCell.value = gameFieldData.cells [i, j].value;
+				instantiatedCell.isUsed = gameFieldData.cells[i,j].isUsed;
+				instantiatedCell.isTarget = gameFieldData.cells[i,j].isTarget;
+				instantiatedCell.targetValue = gameFieldData.cells[i,j].targetValue;
 			}
 		}
 	}

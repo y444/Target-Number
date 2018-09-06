@@ -444,8 +444,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05fc8ef663543614eb55980c319045c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameFieldButton: {fileID: 1022196485620804, guid: 9674e9c74f4ba8647b2b71cb51d83acb,
-    type: 2}
+  rows: 5
+  columns: 5
+  maxValue: 10
+  numberOfTargets: 0
+  Cell: {fileID: 1022196485620804, guid: 9674e9c74f4ba8647b2b71cb51d83acb, type: 2}
 --- !u!222 &752637678
 CanvasRenderer:
   m_ObjectHideFlags: 0
