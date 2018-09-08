@@ -65,43 +65,45 @@ public class Cell : MonoBehaviour {
 		buttonText.text = value.ToString();
 		//checking for dead cells, marking, and recoloring them
 		int deadCount = 0;
-		if (column > 0) {
-			if (gameFieldData.cells [row, column - 1].isUsed == true) {
+		if (isUsed == false) {
+			if (column > 0) {
+				if (gameFieldData.cells [row, column - 1].isUsed == true) {
+					deadCount += 1;
+				}
+			}
+			if (column == 0) {
 				deadCount += 1;
 			}
-		}
-		if (column == 0) {
-			deadCount += 1;
-		}
-		if (column < columnsCount) {
-			if (gameFieldData.cells [row, column + 1].isUsed == true) {
+			if (column < columnsCount) {
+				if (gameFieldData.cells [row, column + 1].isUsed == true) {
+					deadCount += 1;
+				}
+			}
+			if (column == columnsCount) {
 				deadCount += 1;
 			}
-		}
-		if (column == columnsCount) {
-			deadCount += 1;
-		}
-		if (row > 0) {
-			if (gameFieldData.cells [row - 1, column].isUsed == true) {
+			if (row > 0) {
+				if (gameFieldData.cells [row - 1, column].isUsed == true) {
+					deadCount += 1;
+				}
+			}
+			if (row == 0) {
 				deadCount += 1;
 			}
-		}
-		if (row == 0) {
-			deadCount += 1;
-		}
-		if (row < rowsCount) {
-			if (gameFieldData.cells [row + 1, column].isUsed == true) {
+			if (row < rowsCount) {
+				if (gameFieldData.cells [row + 1, column].isUsed == true) {
+					deadCount += 1;
+				}
+			}
+			if (row == rowsCount) {
 				deadCount += 1;
 			}
-		}
-		if (row == rowsCount) {
-			deadCount += 1;
-		}
 
-		if (deadCount == 4) {
-			isDead = true;
-			gameObject.GetComponent<Image> ().sprite = buttonDead;
-			gameObject.GetComponentInChildren<Text> ().color = new Color32 (0x64, 0x64, 0x64, 0xE6);
+			if (deadCount == 4) {
+				isDead = true;
+				gameObject.GetComponent<Image> ().sprite = buttonDead;
+				gameObject.GetComponentInChildren<Text> ().color = new Color32 (0x64, 0x64, 0x64, 0xE6);
+			}
 		}
 	}
 
