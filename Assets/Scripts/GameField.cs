@@ -9,11 +9,12 @@ public class GameField : MonoBehaviour {
 	public int columns;
 	public int maxValue;
 	public int numberOfTargets;
+	public int targetValue;
 	public GameObject Cell;
 
 	// Use this for initialization
 	void Start () {
-		gameFieldData = new GameFieldData(rows, columns, maxValue, numberOfTargets);
+		gameFieldData = new GameFieldData(rows, columns, maxValue, numberOfTargets, targetValue);
 
 		//setup grid layout
 		this.GetComponent<GridLayoutGroup>().constraintCount = columns;
@@ -27,7 +28,6 @@ public class GameField : MonoBehaviour {
 				instantiatedCell.value = gameFieldData.cells [i, j].value;
 				instantiatedCell.isUsed = gameFieldData.cells[i,j].isUsed;
 				instantiatedCell.isTarget = gameFieldData.cells[i,j].isTarget;
-				instantiatedCell.targetValue = gameFieldData.cells[i,j].targetValue;
 			}
 		}
 	}

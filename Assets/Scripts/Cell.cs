@@ -12,8 +12,10 @@ public class Cell : MonoBehaviour {
 	public int targetValue;
 	public bool isUsed;
 
+	public Sprite buttonNormal;
 	public Sprite buttonPressed;
 	public Sprite buttonDead;
+	public Sprite buttonZero;
 
 	private GameFieldData gameFieldData;
 	private GameObject leftArrow;
@@ -41,14 +43,15 @@ public class Cell : MonoBehaviour {
 		//SET INITIAL LOOK
 		//set value texts
 		buttonText.text = value.ToString();
-		//turn off all the zero buttons
+		//properly display zeroed buttons
 		if (value == 0) {
-			gameObject.GetComponent<Image> ().enabled = false;
-			gameObject.transform.Find ("Text").gameObject.SetActive (false);
+			gameObject.GetComponent<Image> ().sprite = buttonZero;
+			gameObject.GetComponentInChildren<Text> ().color = new Color32 (0xC8, 0xC8, 0xC8, 0xE6);
 		}
+
 		//properly display the target buttons
 		if (isTarget == true) {
-			//TODO change appearance to target etc.
+			gameObject.transform.Find ("Target Panel").gameObject.SetActive (true);
 		}
 	}
 	
@@ -57,6 +60,12 @@ public class Cell : MonoBehaviour {
 		//animating value changes on buttons
 		if (value != gameFieldData.cells [row, column].value) {
 			GetComponent<Animator>().SetTrigger("ButtonFlashTrigger");
+			GetComponent<Animator>().SetTrigger("TargetChangeTrigger");
+		}
+		//check if zeroed buttons grew and recolor them properly
+		if (value != 0 && isUsed != true) {
+			gameObject.GetComponent<Image> ().sprite = buttonNormal;
+			gameObject.GetComponentInChildren<Text> ().color = new Color32 (0xFF, 0xFF, 0xFF, 0xE6);
 		}
 		//refreshing values from gamefield, so all the changed buttons update themselves
 		value = gameFieldData.cells [row, column].value;
@@ -109,7 +118,7 @@ public class Cell : MonoBehaviour {
 
 	public void buttonPress() {
 		//update this cell data in the gamefield
-		if (isUsed == false && isDead == false) { 
+		if (isUsed == false && isDead == false && value != 0) { 
 			gameFieldData.cells [row, column].isUsed = true;
 			//update look
 			gameObject.GetComponent<Image> ().sprite = buttonPressed;
@@ -150,7 +159,7 @@ public class Cell : MonoBehaviour {
 		bool isCelltoTopUsed;
 		bool isCelltoBottomUsed;
 
-		if (isUsed == false) {
+		if (isUsed == false && value != 0) {
 			if (column > 0) {
 				isCelltoLeftUsed = gameFieldData.cells [row, column - 1].isUsed;
 				leftArrow.SetActive (!isCelltoLeftUsed);

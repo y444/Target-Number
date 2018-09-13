@@ -9,7 +9,6 @@ public class CellData {
 	public int value;
 	public bool isUsed;
 	public bool isTarget;
-	public int targetValue;
 
 	// Use this for initialization
 	void Start () {
