@@ -1063,6 +1063,7 @@ MonoBehaviour:
   columns: 5
   maxValue: 10
   targetValue: 0
+  numberOfTargets: 1
 --- !u!1 &1697151001
 GameObject:
   m_ObjectHideFlags: 0

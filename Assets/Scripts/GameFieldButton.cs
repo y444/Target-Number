@@ -3,74 +3,110 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameFieldButton : MonoBehaviour {
+public class GameFieldButton : MonoBehaviour
+{
 
-	public int row;
-	public int column;
-	public GameObject gameplayManager;
-	public ButtonState buttonState;
-	public Sprite normalImage;
-	public Sprite usedImage;
-	public Sprite zeroImage;
-	public Sprite deadImage;
-	public Color32 normalTextColor;
-	public Color32 usedTextColor;
-	public Color32 zeroTextColor;
-	public Color32 deadTextColor;
+    public GameObject gameplayManager;
+    public GameObject arrows;
+    public GameObject targetIndicator;
+    public GameObject text;
+    public int row;
+    public int column;
+    public ButtonState buttonState;
+    public Sprite normalImage;
+    public Sprite usedImage;
+    public Sprite zeroImage;
+    public Sprite deadImage;
+    public Color32 normalTextColor;
+    public Color32 usedTextColor;
+    public Color32 zeroTextColor;
+    public Color32 deadTextColor;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
 
-		// Get the current state of the button
-		buttonState = gameplayManager.GetComponent<GameplayManager> ().GetButtonState (row, column);
+    void Start()
+    {
 
-		// Change image depending on the current state of the button
-		SetState(buttonState);
+        // Display target mark if the button is a target
+        SetTarget();
+    }
 
-		// Change text on the button
-		SetText(gameplayManager.GetComponent<GameplayManager> ().GetButtonText (row, column) );
-	}
+    void Update()
+    {
 
-	public void SetState(ButtonState buttonState) {
-		if (buttonState == ButtonState.used) {
-			this.GetComponent<Image> ().sprite = usedImage;
-		}
+        // Get the current state of the button
+        GetState();
 
-		else if (buttonState == ButtonState.dead) {
-			this.GetComponent<Image> ().sprite = deadImage;
-		}
+        // Change image depending on the current state of the button
+        SetImage();
 
-		else if (buttonState == ButtonState.zero) {
-			this.GetComponent<Image> ().sprite = zeroImage;
-		}
+        // Change text on the button
+        SetText();
+    }
 
-		else {
-			this.GetComponent<Image> ().sprite = normalImage;
-		}
-	}
+    public void GetState()
+    {
+        buttonState = gameplayManager.GetComponent<GameplayManager>().GetButtonState(row, column);
+    }
 
-	public void SetText(string text) {
-		if (this.buttonState == ButtonState.used) {
-			this.GetComponentInChildren<Text> ().color = usedTextColor;
-		}
+    public void SetImage()
+    {
+        if (this.buttonState == ButtonState.used)
+        {
+            this.GetComponent<Image>().sprite = usedImage;
+        }
 
-		else if (this.buttonState == ButtonState.dead) {
-			this.GetComponentInChildren<Text> ().color = deadTextColor;
-		}
+        else if (this.buttonState == ButtonState.dead)
+        {
+            this.GetComponent<Image>().sprite = deadImage;
+        }
 
-		else if (this.buttonState == ButtonState.zero) {
-			this.GetComponentInChildren<Text> ().color = zeroTextColor;
-		}
+        else if (this.buttonState == ButtonState.zero)
+        {
+            this.GetComponent<Image>().sprite = zeroImage;
+        }
 
-		else {
-			this.GetComponentInChildren<Text> ().color = normalTextColor;
-		}
+        else
+        {
+            this.GetComponent<Image>().sprite = normalImage;
+        }
+    }
 
-		this.GetComponentInChildren<Text> ().text = text;
-	}
+    public void SetText()
+    {
+        if (this.buttonState == ButtonState.used)
+        {
+            text.GetComponent<Text>().color = usedTextColor;
+
+            Vector2 usedTextPosition = text.GetComponent<RectTransform>().anchoredPosition;
+            usedTextPosition.y = -4f;
+            text.GetComponent<RectTransform>().anchoredPosition = usedTextPosition;
+
+        }
+
+        else if (this.buttonState == ButtonState.dead)
+        {
+            text.GetComponent<Text>().color = deadTextColor;
+        }
+
+        else if (this.buttonState == ButtonState.zero)
+        {
+            text.GetComponent<Text>().color = zeroTextColor;
+        }
+
+        else
+        {
+            text.GetComponent<Text>().color = normalTextColor;
+        }
+
+        text.GetComponent<Text>().text = gameplayManager.GetComponent<GameplayManager>().cellMatrix.cells[row, column].value.ToString();
+    }
+
+    public void SetTarget()
+    {
+        if (gameplayManager.GetComponent<GameplayManager>().cellMatrix.cells[row, column].isTarget == true)
+        {
+            targetIndicator.SetActive(true);
+        }
+    }
+
 }
