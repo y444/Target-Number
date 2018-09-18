@@ -13,12 +13,10 @@ public class CellMatrix {
 	public CellMatrix(int rows, int columns, int maxValue, int targetValue) {
 		this.maxValue = maxValue;
 		this.targetValue = targetValue;
-		Cell[,] cells = new Cell[rows, columns];
-		Debug.Log ("created a cell matrix " + rows.ToString () + " " + columns.ToString () + " " + maxValue.ToString() + " " + targetValue.ToString ());
+		cells = new Cell[rows, columns];
 		for (int i = 0; i < rows; i++) {
 			for (int j = 0; j < columns; j++) {
-				cells[i,j] = new Cell(i,j,0);
-				Debug.Log ("created a cell " + cells [i, j].row + " " + cells [i, j].column + " " + cells [i, j].value);
+				cells[i,j] = new Cell(i,j,Random.Range( 0, maxValue + 1) );
 			}
 		}
 		//TODO generate everything else

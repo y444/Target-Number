@@ -353,6 +353,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   row: 0
   column: 0
+  gameplayManager: {fileID: 0}
+  buttonState: 0
+  normalImage: {fileID: 21300000, guid: f240eeb8250c9384aa091fa11eb0f653, type: 3}
+  usedImage: {fileID: 21300000, guid: 265a9a3d6c3cc2d4fb523a28913ab10d, type: 3}
+  zeroImage: {fileID: 21300000, guid: f0d91dddefe905d4cbfab063e49e4482, type: 3}
+  deadImage: {fileID: 21300000, guid: e9a770abafa6e9041a2c2f73c5e5834d, type: 3}
+  normalTextColor:
+    serializedVersion: 2
+    rgba: 3875536895
+  usedTextColor:
+    serializedVersion: 2
+    rgba: 3862140497
+  zeroTextColor:
+    serializedVersion: 2
+    rgba: 3875536895
+  deadTextColor:
+    serializedVersion: 2
+    rgba: 3865338980
 --- !u!114 &114539908155470302
 MonoBehaviour:
   m_ObjectHideFlags: 1
