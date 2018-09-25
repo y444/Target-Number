@@ -53,7 +53,7 @@ public class GameplayManager : MonoBehaviour
         }
 
         // If not check for dead state
-        else if (isDead(row, column))
+        else if (IsDead(row, column))
         {
             buttonState = ButtonState.dead;
         }
@@ -83,7 +83,7 @@ public class GameplayManager : MonoBehaviour
 
     }
 
-    public bool isDead(int row, int column)
+    public bool IsDead(int row, int column)
     {
 
         //TODO
