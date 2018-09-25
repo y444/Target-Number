@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameplayManager : MonoBehaviour
+public partial class GameplayManager : MonoBehaviour
 {
 
-    public GameObject buttonPrefab;
+    public GameObject cellPrefab;
     public GameObject gameField;
+    public GameObject targetText;
 
     public int rows;
     public int columns;
@@ -15,80 +16,76 @@ public class GameplayManager : MonoBehaviour
     public int targetValue;
     public int numberOfTargets;
 
-    public CellMatrix cellMatrix;
+    public FieldGenerator fieldGenerator;
+    public GameObject[,] gameFieldCells;
 
     void Awake()
     {
 
         // TODO Get gameplay parameters from level manager
 
-        // Generate the matrix
-        cellMatrix = new CellMatrix(rows, columns, maxValue, targetValue, numberOfTargets);
-
         // Fix grid layout to make correct number of columns
         gameField.GetComponent<GridLayoutGroup>().constraintCount = columns;
 
-        // Instantiate buttons
+        // Generate the field & pass the target value
+        fieldGenerator = new FieldGenerator(rows, columns, maxValue, numberOfTargets);
+        targetValue = fieldGenerator.targetValue;
+
+        // Create an array of game field cells
+        gameFieldCells = new GameObject[rows,columns];
+
+        // Instantiate game field cells and set their values
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
             {
-                GameObject instantiatedButton = Instantiate(buttonPrefab, gameField.transform);
-                instantiatedButton.name = "Button Row " + cellMatrix.cells[i, j].row.ToString() + " Col " + cellMatrix.cells[i, j].column.ToString();
-                instantiatedButton.GetComponent<GameFieldButton>().gameplayManager = this.gameObject;
-                instantiatedButton.GetComponent<GameFieldButton>().row = this.cellMatrix.cells[i, j].row;
-                instantiatedButton.GetComponent<GameFieldButton>().column = this.cellMatrix.cells[i, j].column;
+                // Instantiate & name
+                this.gameFieldCells[i, j] = Instantiate(cellPrefab, gameField.transform);
+                this.gameFieldCells[i, j].name = "Button Row " + fieldGenerator.cells[i, j].row.ToString() + " Col " + fieldGenerator.cells[i, j].column.ToString();
+                this.gameFieldCells[i, j].GetComponent<GameFieldCell>().gameplayManager = this.gameObject;
+
+                // Set values from the generator
+                this.gameFieldCells[i, j].GetComponent<GameFieldCell>().row = this.fieldGenerator.cells[i, j].row;
+                this.gameFieldCells[i, j].GetComponent<GameFieldCell>().column = this.fieldGenerator.cells[i, j].column;
+                this.gameFieldCells[i, j].GetComponent<GameFieldCell>().value = this.fieldGenerator.cells[i, j].value;
+                this.gameFieldCells[i, j].GetComponent<GameFieldCell>().isTarget = this.fieldGenerator.cells[i, j].isTarget;
+
+                // Set newly calculated values
+                this.gameFieldCells[i, j].GetComponent<GameFieldCell>().isUsed = IsCellUsed(i, j);
+                this.gameFieldCells[i, j].GetComponent<GameFieldCell>().isZero = IsCellZero(i, j);
+                this.gameFieldCells[i, j].GetComponent<GameFieldCell>().isDead = IsCellUsed(i, j);
             }
         }
+
+        // Set global value text in the top HUD
+        targetText.GetComponent<Text>().text = targetValue.ToString();
     }
 
-    public ButtonState GetButtonState(int row, int column)
+    public bool IsCellUsed(int row, int column)
     {
-        ButtonState buttonState;
+        return false;
+    }
 
-        // Check for used state
-        if (this.cellMatrix.cells[row, column].isUsed == true)
+    public bool IsCellZero(int row, int column)
+    {
+        if (gameFieldCells[row, column].GetComponent<GameFieldCell>().value == 0)
         {
-            buttonState = ButtonState.used;
+            return true;
         }
-
-        // If not check for dead state
-        else if (IsDead(row, column))
-        {
-            buttonState = ButtonState.dead;
-        }
-
-        // If not check for zero state
-        else if (this.cellMatrix.cells[row, column].value == 0)
-        {
-            buttonState = ButtonState.zero;
-        }
-
-        // If none of the above then it's normal
         else
         {
-            buttonState = ButtonState.normal;
+            return false;
         }
-
-        return buttonState;
     }
 
-    public string GetButtonText(int row, int column)
+    public bool IsCellDead(int row, int column)
     {
-        return this.cellMatrix.cells[row, column].value.ToString();
-    }
-
-    public void GameFieldAction(int row, int column)
-    {
-
-    }
-
-    public bool IsDead(int row, int column)
-    {
-
         //TODO
         return false;
     }
-}
 
-public enum ButtonState { normal, used, zero, dead };
+    public void OnClicked(int row, int column)
+    {
+        //TODO all that jazz
+    }
+}

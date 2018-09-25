@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CellMatrix
+public class FieldGenerator
 {
 
     public int rows;
@@ -12,7 +12,7 @@ public class CellMatrix
     public int numberOfTargets;
     public Cell[,] cells;
 
-    public CellMatrix(int rows, int columns, int maxValue, int targetValue, int numberOfTargets)
+    public FieldGenerator(int rows, int columns, int maxValue, int numberOfTargets)
     {
 
         this.maxValue = maxValue;
