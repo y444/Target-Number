@@ -55,7 +55,7 @@ public class GameFieldCell : MonoBehaviour
             GetComponent<Image>().color = usedCellColor;
             valueText.GetComponent<Text>().color = usedTextColor;
 
-            //Also move text lower to match the sprite. We do it only here, because a used cell can't change its look further
+            //Also move text lower to match the sprite. We only do it here, because a used cell can't change its look further
             Vector2 newPosition = valueText.GetComponent<Text>().rectTransform.anchoredPosition;
             newPosition.y = -4f;
             valueText.GetComponent<Text>().rectTransform.anchoredPosition = newPosition;
@@ -88,7 +88,10 @@ public class GameFieldCell : MonoBehaviour
 
     public void Click()
     {
-
+        if (isUsed == false && isZero == false)
+        {
+            gameplayManager.GetComponent<GameplayManager>().OnClicked(row, column);
+        }
     }
 
     public void HoverOn()

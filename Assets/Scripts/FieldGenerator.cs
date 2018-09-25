@@ -16,7 +16,6 @@ public class FieldGenerator
     {
 
         this.maxValue = maxValue;
-        this.targetValue = targetValue;
 
         cells = new Cell[rows, columns];
 
