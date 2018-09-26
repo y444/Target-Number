@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class GameplayManager : MonoBehaviour
 {
 
+    public GameObject gameStateManager;
     public GameObject cellPrefab;
     public GameObject gameField;
     public Text targetText;
@@ -103,15 +104,24 @@ public class GameplayManager : MonoBehaviour
         // Handle the cell that was clicked
         var cell = gameFieldCells[row, column];
 
+        // Add its value to live neighbours
         AddIfExistsAndNotUsed(row + 1, column, cell.Value);
         AddIfExistsAndNotUsed(row - 1, column, cell.Value);
         AddIfExistsAndNotUsed(row, column + 1, cell.Value);
         AddIfExistsAndNotUsed(row, column - 1, cell.Value);
 
+        // Make neighbours dead if needed
         SetIsCellDeadIfExists(cell.row, cell.column);
         SetIsCellDeadIfExists(row + 1, column);
         SetIsCellDeadIfExists(row - 1, column);
         SetIsCellDeadIfExists(row, column + 1);
         SetIsCellDeadIfExists(row, column - 1);
+
+        // Check if the game is won and report if needed
+
+        // Check if the game is lost and report if needed
+        // Lose by having no more moves
+
+        // Lose by overshooting the target value
     }
 }
