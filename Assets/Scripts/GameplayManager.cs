@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +7,7 @@ public partial class GameplayManager : MonoBehaviour
 
     public GameObject cellPrefab;
     public GameObject gameField;
-    public GameObject targetText;
+    public Text targetText;
 
     public int rows;
     public int columns;
@@ -16,8 +15,7 @@ public partial class GameplayManager : MonoBehaviour
     public int targetValue;
     public int numberOfTargets;
 
-    public FieldGenerator fieldGenerator;
-    public GameObject[,] gameFieldCells;
+    public GameFieldCell[,] gameFieldCells;
 
     void Awake()
     {
@@ -28,14 +26,14 @@ public partial class GameplayManager : MonoBehaviour
         gameField.GetComponent<GridLayoutGroup>().constraintCount = columns;
 
         // Generate the field & pass the target value
-        fieldGenerator = new FieldGenerator(rows, columns, maxValue, numberOfTargets);
+        FieldGenerator fieldGenerator = new FieldGenerator(rows, columns, maxValue, numberOfTargets);
         targetValue = fieldGenerator.targetValue;
 
         // Set global value text in the top HUD
-        targetText.GetComponent<Text>().text = targetValue.ToString();
+        targetText.text = targetValue.ToString();
 
         // Create an array of game field cells
-        gameFieldCells = new GameObject[rows,columns];
+        gameFieldCells = new GameFieldCell[rows,columns];
 
         // Instantiate game field cells and set their values
         for (int i = 0; i < rows; i++)
@@ -43,117 +41,87 @@ public partial class GameplayManager : MonoBehaviour
             for (int j = 0; j < columns; j++)
             {
                 // Instantiate & name
-                gameFieldCells[i, j] = Instantiate(cellPrefab, gameField.transform);
-                gameFieldCells[i, j].name = "Button Row " + fieldGenerator.cells[i, j].row.ToString() + " Col " + fieldGenerator.cells[i, j].column.ToString();
-                gameFieldCells[i, j].GetComponent<GameFieldCell>().gameplayManager = gameObject;
+                var cell = Instantiate(cellPrefab, gameField.transform).GetComponent<GameFieldCell>();
+                gameFieldCells[i, j] = cell;
+                cell.gameObject.name = "Button Row " + fieldGenerator.cells[i, j].row.ToString() + " Col " + fieldGenerator.cells[i, j].column.ToString();
+                cell.gameplayManager = gameObject;
 
                 // Set values from the generator
-                gameFieldCells[i, j].GetComponent<GameFieldCell>().row = fieldGenerator.cells[i, j].row;
-                gameFieldCells[i, j].GetComponent<GameFieldCell>().column = fieldGenerator.cells[i, j].column;
-                gameFieldCells[i, j].GetComponent<GameFieldCell>().value = fieldGenerator.cells[i, j].value;
-                gameFieldCells[i, j].GetComponent<GameFieldCell>().isTarget = fieldGenerator.cells[i, j].isTarget;
+                cell.row = fieldGenerator.cells[i, j].row;
+                cell.column = fieldGenerator.cells[i, j].column;
+                cell.Value = fieldGenerator.cells[i, j].value;
+                cell.isTarget = fieldGenerator.cells[i, j].isTarget;
 
                 // Set newly calculated values
-                gameFieldCells[i, j].GetComponent<GameFieldCell>().isUsed = IsCellUsed(i, j);
-                gameFieldCells[i, j].GetComponent<GameFieldCell>().isZero = IsCellZero(i, j);
-                gameFieldCells[i, j].GetComponent<GameFieldCell>().isDead = IsCellDead(i, j);
+                cell.IsDead = IsCellDead(cell.row, cell.column);
             }
         }
     }
 
-    public bool IsCellUsed(int row, int column)
+    bool IsCellDead(int row, int column)
     {
-        return false;
-    }
-
-    public bool IsCellZero(int row, int column)
-    {
-        if (gameFieldCells[row, column].GetComponent<GameFieldCell>().value == 0)
+        if (gameFieldCells[row, column].IsUsed)
         {
             return true;
         }
-        else
+
+        bool isDead = true;
+
+        if (IsCellExist(row + 1, column))
         {
-            return false;
+            isDead &= gameFieldCells[row + 1, column].IsUsed;
+        }
+
+        isDead &= IsCellExist(row + 1, column) == false || gameFieldCells[row + 1, column].IsUsed;
+        isDead &= IsCellExist(row - 1, column) == false || gameFieldCells[row - 1, column].IsUsed;
+        isDead &= IsCellExist(row , column + 1) == false || gameFieldCells[row, column + 1].IsUsed;
+        isDead &= IsCellExist(row , column - 1) == false || gameFieldCells[row, column - 1].IsUsed;
+
+        return isDead;
+    }
+
+    void SetIsCellDeadIfExists(int row, int column)
+    {
+        if (IsCellExist(row, column))
+        {
+            gameFieldCells[row, column].IsDead = IsCellDead(row, column);
         }
     }
 
-    public bool IsCellDead(int row, int column)
+    bool IsCellExist(int row, int column)
     {
-        if (gameFieldCells[row, column].GetComponent<GameFieldCell>().isUsed == false)
-        {
-            int deadCount = 0;
-            if (column > 0)
-            {
-                if (gameFieldCells[row, column - 1].GetComponent<GameFieldCell>().isUsed == true)
-                {
-                    deadCount += 1;
-                }
-            }
-            if (column == 0)
-            {
-                deadCount += 1;
-            }
-            if (column < columns)
-            {
-                if (gameFieldCells[row, column + 1].GetComponent<GameFieldCell>().isUsed == true)
-                {
-                    deadCount += 1;
-                }
-            }
-            if (column == columns)
-            {
-                deadCount += 1;
-            }
-            if (row > 0)
-            {
-                if (gameFieldCells[row - 1, column].GetComponent<GameFieldCell>().isUsed == true)
-                {
-                    deadCount += 1;
-                }
-            }
-            if (row == 0)
-            {
-                deadCount += 1;
-            }
-            if (row < rows)
-            {
-                if (gameFieldCells[row + 1, column].GetComponent<GameFieldCell>().isUsed == true)
-                {
-                    deadCount += 1;
-                }
-            }
-            if (row == rows)
-            {
-                deadCount += 1;
-            }
+        return row >= 0 && row < rows && column >= 0 && column < columns && gameFieldCells[row, column] != null;
+    }
 
-            if (deadCount == 4)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-            
-        }
-        else
+    void AddIfExistsAndNotUsed(int row, int column, int value)
+    {
+        if (IsCellExist(row, column) && gameFieldCells[row, column].IsUsed == false)
         {
-            return false;
+            gameFieldCells[row, column].Value += value;
         }
     }
 
     public void OnClicked(int row, int column)
     {
         // Handle the cell that was clicked
-        gameFieldCells[row, column].GetComponent<GameFieldCell>().isUsed = true;
-        gameFieldCells[row, column].GetComponent<GameFieldCell>().UpdateLook();
+        var cell = gameFieldCells[row, column];
+
+        AddIfExistsAndNotUsed(row + 1, column, cell.Value);
+        AddIfExistsAndNotUsed(row - 1, column, cell.Value);
+        AddIfExistsAndNotUsed(row, column + 1, cell.Value);
+        AddIfExistsAndNotUsed(row, column - 1, cell.Value);
+
+        SetIsCellDeadIfExists(cell.row, cell.column);
+        SetIsCellDeadIfExists(row + 1, column);
+        SetIsCellDeadIfExists(row - 1, column);
+        SetIsCellDeadIfExists(row, column + 1);
+        SetIsCellDeadIfExists(row, column - 1);
+
 
         // Handle its neighbours
-        
+
         // Check if win condition "Target value reached" is met
-        
+
         // Check if loss condition "No more moves" is met
 
         // Check if loss condition "Target value exceeded" is met

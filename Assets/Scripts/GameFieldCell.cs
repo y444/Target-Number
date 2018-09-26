@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class GameFieldCell : MonoBehaviour
@@ -12,12 +10,53 @@ public class GameFieldCell : MonoBehaviour
 
     public int row;
     public int column;
-    public int value;
+
+    int _value;
+    public int Value
+    {
+        get
+        {
+            return _value;
+        }
+        set
+        {
+            if (_value != value)
+            {
+                _value = value;
+                UpdateLook();
+            }
+        }
+    }
     public bool isTarget;
 
-    public bool isUsed;
-    public bool isZero;
-    public bool isDead;
+    public bool IsUsed { get; private set; }
+
+    public bool IsZero
+    {
+        get
+        {
+            return Value == 0;
+        }
+    }
+
+    bool _isDead;
+
+    public bool IsDead
+    {
+        get
+        {
+            return _isDead;
+
+        }
+        set
+        {
+            if (_isDead != value)
+            {
+                _isDead = value;
+                UpdateLook();
+            }
+        }
+    }
 
     public Sprite normalSprite;
     public Color32 normalCellColor;
@@ -37,19 +76,13 @@ public class GameFieldCell : MonoBehaviour
         UpdateLook();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void UpdateLook()
     {
         // Update value
-        valueText.GetComponent<Text>().text = value.ToString();
+        valueText.GetComponent<Text>().text = Value.ToString();
 
         // Set sprites, sprite colors and text colors
-        if (isUsed == true)
+        if (IsUsed)
         {
             GetComponent<Image>().sprite = usedSprite;
             GetComponent<Image>().color = usedCellColor;
@@ -60,13 +93,13 @@ public class GameFieldCell : MonoBehaviour
             newPosition.y = -4f;
             valueText.GetComponent<Text>().rectTransform.anchoredPosition = newPosition;
         }
-        else if (isZero == true)
+        else if (IsZero)
         {
             GetComponent<Image>().sprite = normalSprite;
             GetComponent<Image>().color = zeroCellColor;
             valueText.GetComponent<Text>().color = zeroTextColor;
         }
-        else if (isDead == true)
+        else if (IsDead)
         {
             GetComponent<Image>().sprite = normalSprite;
             GetComponent<Image>().color = deadCellColor;
@@ -80,7 +113,7 @@ public class GameFieldCell : MonoBehaviour
         }
 
         //Display target sprite on target cells
-        if (isTarget == true)
+        if (isTarget)
         {
             targetMark.SetActive(true);
         }
@@ -88,9 +121,11 @@ public class GameFieldCell : MonoBehaviour
 
     public void Click()
     {
-        if (isUsed == false && isZero == false)
+        if (IsUsed == false && IsZero == false)
         {
+            IsUsed = true;
             gameplayManager.GetComponent<GameplayManager>().OnClicked(row, column);
+            UpdateLook();
         }
     }
 
