@@ -4,9 +4,13 @@ using UnityEngine.UI;
 public class GameFieldCell : MonoBehaviour
 {
 
-    public GameObject gameplayManager;
+    public GameplayManager gameplayManager;
     public GameObject valueText;
     public GameObject targetMark;
+    public GameObject leftArrow;
+    public GameObject rightArrow;
+    public GameObject topArrow;
+    public GameObject bottomArrow;
 
     public int row;
     public int column;
@@ -119,23 +123,39 @@ public class GameFieldCell : MonoBehaviour
         }
     }
 
+    bool IsInteractive()
+    {
+        return IsUsed == false && IsZero == false && IsDead == false;
+    }
+
     public void Click()
     {
-        if (IsUsed == false && IsZero == false)
+        if (IsInteractive())
         {
             IsUsed = true;
-            gameplayManager.GetComponent<GameplayManager>().OnClicked(row, column);
+            gameplayManager.OnClicked(row, column);
             UpdateLook();
+            HoverOff();
         }
     }
 
     public void HoverOn()
     {
 
+        if (IsInteractive())
+        {
+            leftArrow.SetActive(gameplayManager.IsCellExistAndIsAlive(row, column - 1));
+            rightArrow.SetActive(gameplayManager.IsCellExistAndIsAlive(row, column + 1));
+            topArrow.SetActive(gameplayManager.IsCellExistAndIsAlive(row - 1, column));
+            bottomArrow.SetActive(gameplayManager.IsCellExistAndIsAlive(row + 1, column));
+        }
     }
 
     public void HoverOff()
     {
-
+       leftArrow.SetActive(false);
+       rightArrow.SetActive(false);
+       topArrow.SetActive(false);
+       bottomArrow.SetActive(false);
     }
 }

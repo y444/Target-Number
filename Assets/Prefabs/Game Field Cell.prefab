@@ -326,13 +326,13 @@ MonoBehaviour:
   gameplayManager: {fileID: 0}
   valueText: {fileID: 1291840856302718}
   targetMark: {fileID: 1044808634771136}
+  leftArrow: {fileID: 1440216416779768}
+  rightArrow: {fileID: 1138276191813972}
+  topArrow: {fileID: 1554537088290572}
+  bottomArrow: {fileID: 1939136753398400}
   row: 0
   column: 0
-  value: 0
   isTarget: 0
-  isUsed: 0
-  isZero: 0
-  isDead: 0
   normalSprite: {fileID: 21300000, guid: f4cf83bf34d0d5449ab48e0ab27e4818, type: 3}
   normalCellColor:
     serializedVersion: 2

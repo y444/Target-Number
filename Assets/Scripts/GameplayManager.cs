@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public partial class GameplayManager : MonoBehaviour
+public class GameplayManager : MonoBehaviour
 {
 
     public GameObject cellPrefab;
@@ -44,16 +44,13 @@ public partial class GameplayManager : MonoBehaviour
                 var cell = Instantiate(cellPrefab, gameField.transform).GetComponent<GameFieldCell>();
                 gameFieldCells[i, j] = cell;
                 cell.gameObject.name = "Button Row " + fieldGenerator.cells[i, j].row.ToString() + " Col " + fieldGenerator.cells[i, j].column.ToString();
-                cell.gameplayManager = gameObject;
+                cell.gameplayManager = gameObject.GetComponent<GameplayManager>();
 
                 // Set values from the generator
                 cell.row = fieldGenerator.cells[i, j].row;
                 cell.column = fieldGenerator.cells[i, j].column;
                 cell.Value = fieldGenerator.cells[i, j].value;
                 cell.isTarget = fieldGenerator.cells[i, j].isTarget;
-
-                // Set newly calculated values
-                cell.IsDead = IsCellDead(cell.row, cell.column);
             }
         }
     }
@@ -66,11 +63,6 @@ public partial class GameplayManager : MonoBehaviour
         }
 
         bool isDead = true;
-
-        if (IsCellExist(row + 1, column))
-        {
-            isDead &= gameFieldCells[row + 1, column].IsUsed;
-        }
 
         isDead &= IsCellExist(row + 1, column) == false || gameFieldCells[row + 1, column].IsUsed;
         isDead &= IsCellExist(row - 1, column) == false || gameFieldCells[row - 1, column].IsUsed;
@@ -91,6 +83,11 @@ public partial class GameplayManager : MonoBehaviour
     bool IsCellExist(int row, int column)
     {
         return row >= 0 && row < rows && column >= 0 && column < columns && gameFieldCells[row, column] != null;
+    }
+
+    public bool IsCellExistAndIsAlive(int row, int column)
+    {
+        return IsCellExist(row, column) && !gameFieldCells[row, column].IsDead;
     }
 
     void AddIfExistsAndNotUsed(int row, int column, int value)
@@ -116,14 +113,5 @@ public partial class GameplayManager : MonoBehaviour
         SetIsCellDeadIfExists(row - 1, column);
         SetIsCellDeadIfExists(row, column + 1);
         SetIsCellDeadIfExists(row, column - 1);
-
-
-        // Handle its neighbours
-
-        // Check if win condition "Target value reached" is met
-
-        // Check if loss condition "No more moves" is met
-
-        // Check if loss condition "Target value exceeded" is met
     }
 }
