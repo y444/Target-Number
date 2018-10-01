@@ -1,4 +1,6 @@
-﻿using UnityEditor.IMGUI.Controls;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,7 +30,9 @@ public class GameplayManager : MonoBehaviour
 
         // Generate the field & pass the target value
         FieldGenerator fieldGenerator = new FieldGenerator(rows, columns, maxValue, numberOfTargets);
-        targetValue = fieldGenerator.targetValue;
+        
+        // UNCOMMENT THIS WHEN GENERATOR IS DONE
+        //targetValue = fieldGenerator.targetValue;
 
         // Set global value text in the top HUD
         targetText.text = targetValue.ToString();
@@ -99,6 +103,77 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
+    int GetSumOfTargetCells()
+    {
+        int sumTargetCells = 0;
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if (gameFieldCells[i,j].isTarget == true)
+                {
+                    sumTargetCells += gameFieldCells[i, j].Value;
+                }
+            }
+        }
+        return sumTargetCells;
+    }
+
+    bool HasMoves()
+    {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < columns; j++)
+            {
+                if (gameFieldCells[i, j].IsDead == false)
+                {
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+
+    void CheckReportGameState()
+    {
+
+        // Compare the sum of all the target cells with the target value
+
+        // In case the sum is less than target value - check if there are available moves
+
+        // If not - enable loss condition by moves
+
+        // In case the sum is more than the target value - enable loss condition by sum
+
+        // Is the sum is equal to the target value - enable win condition
+
+        // Report the condition to the game state manager
+
+        int sumOfTargetCells = GetSumOfTargetCells();
+        Debug.Log(sumOfTargetCells);
+        bool hasMoves = HasMoves();
+        Debug.Log(hasMoves);
+
+        if (sumOfTargetCells < targetValue)
+        {
+            if (!hasMoves)
+            {
+                gameStateManager.GetComponent<GameStateManager>().StateChange(GameStates.LostNoMoves);
+            }
+        }
+
+        else if (sumOfTargetCells == targetValue)
+        {
+            gameStateManager.GetComponent<GameStateManager>().StateChange(GameStates.Won);
+        }
+
+        else if (sumOfTargetCells > targetValue)
+        {
+            gameStateManager.GetComponent<GameStateManager>().StateChange(GameStates.LostOvershoot);
+        }
+    }
+
     public void OnClicked(int row, int column)
     {
         // Handle the cell that was clicked
@@ -117,11 +192,7 @@ public class GameplayManager : MonoBehaviour
         SetIsCellDeadIfExists(row, column + 1);
         SetIsCellDeadIfExists(row, column - 1);
 
-        // Check if the game is won and report if needed
-
-        // Check if the game is lost and report if needed
-        // Lose by having no more moves
-
-        // Lose by overshooting the target value
+        // Check if the game state has changed and report to the game state manager
+        CheckReportGameState();
     }
 }
