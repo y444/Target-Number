@@ -3211,7 +3211,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1586162420
 Transform:
   m_ObjectHideFlags: 0
@@ -3239,6 +3239,7 @@ MonoBehaviour:
   gameStateManager: {fileID: 1726488645}
   cellPrefab: {fileID: 1354181750380388, guid: 9674e9c74f4ba8647b2b71cb51d83acb, type: 2}
   gameField: {fileID: 752637674}
+  levelManager: {fileID: 2109170180}
   targetText: {fileID: 404198453}
   rows: 5
   columns: 5
@@ -3752,7 +3753,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43850d31fbf552c4c87bb073e3add2e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentLevel: 0
+  currentLevelNumber: 0
+  rows: 0
+  columns: 0
+  maxValue: 0
+  numberOfTargets: 0
+  levelNumberText: {fileID: 847116746}
+  gameplayManager: {fileID: 1586162419}
   levels:
   - rows: 2
     columns: 2

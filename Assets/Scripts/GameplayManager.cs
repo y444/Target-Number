@@ -10,6 +10,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject gameStateManager;
     public GameObject cellPrefab;
     public GameObject gameField;
+    public GameObject levelManager;
     public Text targetText;
 
     public int rows;
@@ -26,7 +27,11 @@ public class GameplayManager : MonoBehaviour
     void Awake()
     {
 
-        // TODO Get gameplay parameters from level manager
+        // Get gameplay parameters from level manager
+        rows = levelManager.GetComponent<LevelManager>().rows;
+        columns = levelManager.GetComponent<LevelManager>().columns;
+        maxValue = levelManager.GetComponent<LevelManager>().maxValue;
+        numberOfTargets = levelManager.GetComponent<LevelManager>().numberOfTargets;
 
         // Fix grid layout to make correct number of columns
         gameField.GetComponent<GridLayoutGroup>().constraintCount = columns;
@@ -62,6 +67,9 @@ public class GameplayManager : MonoBehaviour
                 cell.isTarget = fieldGenerator.cells[i, j].isTarget;
             }
         }
+
+        // Set game state to normal
+        gameStateManager.GetComponent<GameStateManager>().StateChange(GameStates.Normal);
     }
 
     bool IsCellDead(int row, int column)

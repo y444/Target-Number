@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GameStates { LostNoMoves, LostOvershoot, Won };
+public enum GameStates { LostNoMoves, LostOvershoot, Won, Normal };
 
 public class GameStateManager : MonoBehaviour
 {
@@ -41,6 +41,9 @@ public class GameStateManager : MonoBehaviour
                 currentState = GameStates.Won;
                 popupManager.GetComponent<PopupManager>().Show(Popups.Win);
                 Debug.Log("Won");
+                break;
+            case GameStates.Normal:
+                currentState = GameStates.Normal;
                 break;
             default:
                 break;
