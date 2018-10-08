@@ -8,7 +8,6 @@ public class GameStateManager : MonoBehaviour
 {
 
     public GameObject popupManager;
-    public GameObject levelManager;
     public GameObject gameplayManager;
     public GameStates currentState;
 

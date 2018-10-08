@@ -15,8 +15,11 @@ public class GameplayManager : MonoBehaviour
     public int rows;
     public int columns;
     public int maxValue;
-    public int targetValue;
     public int numberOfTargets;
+    public int targetValue;
+
+    int currentTargetValue;
+    
 
     public GameFieldCell[,] gameFieldCells;
 
@@ -30,12 +33,13 @@ public class GameplayManager : MonoBehaviour
 
         // Generate the field & pass the target value
         FieldGenerator fieldGenerator = new FieldGenerator(rows, columns, maxValue, numberOfTargets);
-        
+
         // UNCOMMENT THIS WHEN GENERATOR IS DONE
         //targetValue = fieldGenerator.targetValue;
 
         // Set global value text in the top HUD
-        targetText.text = targetValue.ToString();
+        currentTargetValue = 0;
+        targetText.text = currentTargetValue.ToString() + "/" + targetValue.ToString();
 
         // Create an array of game field cells
         gameFieldCells = new GameFieldCell[rows,columns];
@@ -103,20 +107,20 @@ public class GameplayManager : MonoBehaviour
         }
     }
 
-    int GetSumOfTargetCells()
+    int GetCurrentTargetValue()
     {
-        int sumTargetCells = 0;
+        int currentTargetValue = 0;
         for (int i = 0; i < rows; i++)
         {
             for (int j = 0; j < columns; j++)
             {
                 if (gameFieldCells[i,j].isTarget == true)
                 {
-                    sumTargetCells += gameFieldCells[i, j].Value;
+                    currentTargetValue += gameFieldCells[i, j].Value;
                 }
             }
         }
-        return sumTargetCells;
+        return currentTargetValue;
     }
 
     bool HasMoves()
@@ -137,25 +141,12 @@ public class GameplayManager : MonoBehaviour
 
     void CheckReportGameState()
     {
-
-        // Compare the sum of all the target cells with the target value
-
-        // In case the sum is less than target value - check if there are available moves
-
-        // If not - enable loss condition by moves
-
-        // In case the sum is more than the target value - enable loss condition by sum
-
-        // Is the sum is equal to the target value - enable win condition
-
-        // Report the condition to the game state manager
-
-        int sumOfTargetCells = GetSumOfTargetCells();
-        Debug.Log(sumOfTargetCells);
+        int currentTargetValue = GetCurrentTargetValue();
+        Debug.Log(currentTargetValue);
         bool hasMoves = HasMoves();
         Debug.Log(hasMoves);
 
-        if (sumOfTargetCells < targetValue)
+        if (currentTargetValue < targetValue)
         {
             if (!hasMoves)
             {
@@ -163,12 +154,12 @@ public class GameplayManager : MonoBehaviour
             }
         }
 
-        else if (sumOfTargetCells == targetValue)
+        else if (currentTargetValue == targetValue)
         {
             gameStateManager.GetComponent<GameStateManager>().StateChange(GameStates.Won);
         }
 
-        else if (sumOfTargetCells > targetValue)
+        else if (currentTargetValue > targetValue)
         {
             gameStateManager.GetComponent<GameStateManager>().StateChange(GameStates.LostOvershoot);
         }
@@ -191,6 +182,10 @@ public class GameplayManager : MonoBehaviour
         SetIsCellDeadIfExists(row - 1, column);
         SetIsCellDeadIfExists(row, column + 1);
         SetIsCellDeadIfExists(row, column - 1);
+
+        //Update target value display
+        currentTargetValue = GetCurrentTargetValue();
+        targetText.text = currentTargetValue.ToString() + "/" + targetValue.ToString();
 
         // Check if the game state has changed and report to the game state manager
         CheckReportGameState();
