@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum Popups { Win, Lose, Reset, Quit };
-
 public class PopupManager : MonoBehaviour
 {
 
@@ -12,7 +10,6 @@ public class PopupManager : MonoBehaviour
     public GameObject popupsBackground;
     public GameObject winPopup;
     public GameObject losePopup;
-    public GameObject losePopupSubtitle;
     public GameObject resetPopup;
     public GameObject quitPopup;
 
@@ -28,58 +25,17 @@ public class PopupManager : MonoBehaviour
 
     }
 
-    public void Show(Popups popup)
+    public void Show(GameObject popup)
     {
         popupsBackground.SetActive(true);
-        switch (popup)
-        {
-            case Popups.Win:
-                winPopup.SetActive(true);
-                break;
-            case Popups.Lose:
-                losePopup.SetActive(true);
-                // Set reason for loss
-                if (gameStateManager.GetComponent<GameStateManager>().currentState == GameStates.LostNoMoves)
-                {
-                    losePopupSubtitle.GetComponent<Text>().text = "no moves left";
-                }
-                if (gameStateManager.GetComponent<GameStateManager>().currentState == GameStates.LostOvershoot)
-                {
-                    losePopupSubtitle.GetComponent<Text>().text = "target number exceeded";
-                }
-                break;
-            case Popups.Reset:
-                resetPopup.SetActive(true);
-                break;
-            case Popups.Quit:
-                quitPopup.SetActive(true);
-                break;
-            default:
-                break;
-        }
+        popup.SetActive(true);
     }
 
 
 
-    public void Hide(Popups popup)
+    public void Hide(GameObject popup)
     {
         popupsBackground.SetActive(false);
-        switch (popup)
-        {
-            case Popups.Win:
-                winPopup.SetActive(false);
-                break;
-            case Popups.Lose:
-                losePopup.SetActive(false);
-                break;
-            case Popups.Reset:
-                resetPopup.SetActive(false);
-                break;
-            case Popups.Quit:
-                quitPopup.SetActive(false);
-                break;
-            default:
-                break;
-        }
+        popup.SetActive(false);
     }
 }
