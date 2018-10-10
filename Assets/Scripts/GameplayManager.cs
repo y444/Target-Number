@@ -24,9 +24,8 @@ public class GameplayManager : MonoBehaviour
 
     public GameFieldCell[,] gameFieldCells;
 
-    void Awake()
+    public void Init()
     {
-
         // Get gameplay parameters from level manager
         rows = levelManager.GetComponent<LevelManager>().rows;
         columns = levelManager.GetComponent<LevelManager>().columns;
@@ -44,10 +43,10 @@ public class GameplayManager : MonoBehaviour
 
         // Set global value text in the top HUD
         currentTargetValue = 0;
-        targetText.text = currentTargetValue.ToString() + "/" + targetValue.ToString();
+        targetText.text = currentTargetValue.ToString("000") + "/" + targetValue.ToString("000");
 
         // Create an array of game field cells
-        gameFieldCells = new GameFieldCell[rows,columns];
+        gameFieldCells = new GameFieldCell[rows, columns];
 
         // Instantiate game field cells and set their values
         for (int i = 0; i < rows; i++)
@@ -70,6 +69,14 @@ public class GameplayManager : MonoBehaviour
 
         // Set game state to normal
         gameStateManager.GetComponent<GameStateManager>().StateChange(GameStates.Normal);
+    }
+
+    public void Reset()
+    {
+        foreach (Transform child in gameField.transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
     }
 
     bool IsCellDead(int row, int column)

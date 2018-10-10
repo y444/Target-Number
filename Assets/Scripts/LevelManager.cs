@@ -17,24 +17,26 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        // TODO Ask prefs if we are continuing the game
-
-        // TODO Start either first or continuing level
-
-        //TEMP
-        StartLevel(0);
-
+        // Ask prefs what level should we start at
+        if (PlayerPrefs.HasKey("currentLevel"))
+        {
+            StartLevel(PlayerPrefs.GetInt("currentLevel"));
+        }
+        else
+        {
+            StartLevel(0);
+        }
     }
 
     public void StartLevel(int levelNumber)
     {
         // Disable gameplay manager
-        gameplayManager.SetActive(false);
+        gameplayManager.GetComponent<GameplayManager>().Reset();
 
         // Set current level number and other parameters
         currentLevelNumber = levelNumber;
 
-        if (currentLevelNumber <= levels.Length)
+        if (currentLevelNumber < levels.Length)
         {
             rows = levels[currentLevelNumber].rows;
             columns = levels[currentLevelNumber].columns;
@@ -43,17 +45,27 @@ public class LevelManager : MonoBehaviour
         }
         else
         {
-            rows = levels[levels.Length].rows;
-            columns = levels[levels.Length].columns;
-            maxValue = levels[levels.Length].maxValue;
-            numberOfTargets = levels[levels.Length].numberOfTargets;
+            rows = levels[levels.Length - 1].rows;
+            columns = levels[levels.Length - 1].columns;
+            maxValue = levels[levels.Length - 1].maxValue;
+            numberOfTargets = levels[levels.Length - 1].numberOfTargets;
         }
 
         // Enable gameplay manager so it can take parameters and generate grid
-        gameplayManager.SetActive(true);
+        gameplayManager.GetComponent<GameplayManager>().Init();
+
+        //TODO update current level & highscore
+        PlayerPrefs.SetInt("currentLevel", currentLevelNumber);
+        if (currentLevelNumber > PlayerPrefs.GetInt("bestResult"))
+        {
+            PlayerPrefs.SetInt("bestResult", currentLevelNumber);
+        }
+        PlayerPrefs.Save();
 
         // Set level number in top HUD
         levelNumberText.GetComponent<Text>().text = "Level " + (currentLevelNumber + 1).ToString();
+
+        Debug.Log("Level " + currentLevelNumber.ToString() + " start");
     }
 
     public void NextLevel()

@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+// Playerprefs structure
+// int bestResult - shows the highest level achieved
+// int currentLevel - shows that the player quit the game at certain level and is able to continue it
+
 
 public class StartupManager : MonoBehaviour
 {
@@ -17,14 +23,14 @@ public class StartupManager : MonoBehaviour
     {
         if (PlayerPrefs.HasKey("bestResult"))
         {
-            bestResultText.text = "Best result: Level " + PlayerPrefs.GetInt("bestResult").ToString();
+            bestResultText.text = "Best result: Level " + (PlayerPrefs.GetInt("bestResult") + 1).ToString();
         }
         else
         {
             bestResultText.text = "";
         }
 
-        if (PlayerPrefs.HasKey("currentLevel"))
+        if (PlayerPrefs.HasKey("currentLevel") && PlayerPrefs.GetInt("currentLevel") > 0)
         {
             continueButton.SetActive(true);
         }
@@ -34,9 +40,8 @@ public class StartupManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void LoadGameplayScene()
     {
-
+        SceneManager.LoadScene(1);
     }
 }

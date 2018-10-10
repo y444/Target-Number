@@ -10,6 +10,8 @@ public class GameStateManager : MonoBehaviour
     public GameObject popupManager;
     public GameObject gameplayManager;
     public GameStates currentState;
+    public GameObject winPopup;
+    public GameObject losePopup;
 
     // Use this for initialization
     void Start()
@@ -29,17 +31,17 @@ public class GameStateManager : MonoBehaviour
         {
             case GameStates.LostNoMoves:
                 currentState = GameStates.LostNoMoves;
-                popupManager.GetComponent<PopupManager>().Show(Popups.Lose);
+                popupManager.GetComponent<PopupManager>().Show(losePopup);
                 Debug.Log("No Moves");
                 break;
             case GameStates.LostOvershoot:
                 currentState = GameStates.LostOvershoot;
-                popupManager.GetComponent<PopupManager>().Show(Popups.Lose);
+                popupManager.GetComponent<PopupManager>().Show(losePopup);
                 Debug.Log("Overshoot");
                 break;
             case GameStates.Won:
                 currentState = GameStates.Won;
-                popupManager.GetComponent<PopupManager>().Show(Popups.Win);
+                popupManager.GetComponent<PopupManager>().Show(winPopup);
                 Debug.Log("Won");
                 break;
             case GameStates.Normal:

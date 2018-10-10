@@ -2093,6 +2093,34 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2109170182}
+          m_MethodName: NextLevel
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 1553077704}
+          m_MethodName: Hide
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1114272783}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
 --- !u!1 &919500914
 GameObject:
@@ -3149,7 +3177,6 @@ MonoBehaviour:
   popupsBackground: {fileID: 732819013}
   winPopup: {fileID: 1114272783}
   losePopup: {fileID: 1767351068}
-  losePopupSubtitle: {fileID: 504239194}
   resetPopup: {fileID: 1054764041}
   quitPopup: {fileID: 149232652}
 --- !u!1 &1571644934
@@ -3211,7 +3238,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1586162420
 Transform:
   m_ObjectHideFlags: 0
@@ -3505,6 +3532,8 @@ MonoBehaviour:
   popupManager: {fileID: 1553077702}
   gameplayManager: {fileID: 1586162419}
   currentState: 0
+  winPopup: {fileID: 1114272783}
+  losePopup: {fileID: 1767351068}
 --- !u!1 &1767351068
 GameObject:
   m_ObjectHideFlags: 0
