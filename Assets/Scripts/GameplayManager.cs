@@ -44,7 +44,7 @@ public class GameplayManager : MonoBehaviour
 
         // Set global value text in the top HUD
         currentTargetValue = 0;
-        targetText.text = currentTargetValue.ToString("000") + "/" + targetValue.ToString("000");
+        targetText.text = currentTargetValue.ToString() + "/" + targetValue.ToString();
 
         // Create an array of game field cells
         gameFieldCells = new GameFieldCell[rows,columns];
