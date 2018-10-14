@@ -5,6 +5,7 @@ public class GameFieldCell : MonoBehaviour
 {
 
     public GameplayManager gameplayManager;
+    public HelpMessageManager helpMessageManager;
     public GameObject valueText;
     public GameObject targetMark;
     public GameObject leftArrow;
@@ -149,13 +150,27 @@ public class GameFieldCell : MonoBehaviour
             topArrow.SetActive(gameplayManager.IsCellExistAndIsAlive(row - 1, column));
             bottomArrow.SetActive(gameplayManager.IsCellExistAndIsAlive(row + 1, column));
         }
+
+        HoverOnHelp();
     }
 
     public void HoverOff()
     {
-       leftArrow.SetActive(false);
-       rightArrow.SetActive(false);
-       topArrow.SetActive(false);
-       bottomArrow.SetActive(false);
+        leftArrow.SetActive(false);
+        rightArrow.SetActive(false);
+        topArrow.SetActive(false);
+        bottomArrow.SetActive(false);
+
+        HoverOffHelp();
+    }
+
+    void HoverOnHelp()
+    {
+        helpMessageManager.GetComponent<HelpMessageManager>().DisplayMessage("test");
+    }
+
+    void HoverOffHelp()
+    {
+        helpMessageManager.GetComponent<HelpMessageManager>().DisplayDefaultMessage();
     }
 }

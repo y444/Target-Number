@@ -324,6 +324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameplayManager: {fileID: 0}
+  helpMessageManager: {fileID: 0}
   valueText: {fileID: 1291840856302718}
   targetMark: {fileID: 1044808634771136}
   leftArrow: {fileID: 1440216416779768}

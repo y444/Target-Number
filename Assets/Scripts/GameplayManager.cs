@@ -11,6 +11,7 @@ public class GameplayManager : MonoBehaviour
     public GameObject cellPrefab;
     public GameObject gameField;
     public GameObject levelManager;
+    public GameObject helpMessageManager;
     public Text targetText;
 
     public int rows;
@@ -58,6 +59,7 @@ public class GameplayManager : MonoBehaviour
                 gameFieldCells[i, j] = cell;
                 cell.gameObject.name = "Button Row " + fieldGenerator.cells[i, j].row.ToString() + " Col " + fieldGenerator.cells[i, j].column.ToString();
                 cell.gameplayManager = gameObject.GetComponent<GameplayManager>();
+                cell.helpMessageManager = helpMessageManager.GetComponent<HelpMessageManager>();
 
                 // Set values from the generator
                 cell.row = fieldGenerator.cells[i, j].row;
