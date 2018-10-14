@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+
 
 // Playerprefs structure
 // int bestResult - shows the highest level achieved
@@ -38,10 +38,5 @@ public class StartupManager : MonoBehaviour
         {
             continueButton.SetActive(false);
         }
-    }
-
-    public void LoadGameplayScene()
-    {
-        SceneManager.LoadScene(1);
     }
 }

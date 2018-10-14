@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum GameStates { LostNoMoves, LostOvershoot, Won, Normal };
 
@@ -12,6 +13,7 @@ public class GameStateManager : MonoBehaviour
     public GameStates currentState;
     public GameObject winPopup;
     public GameObject losePopup;
+    public GameObject losePopupReasonLabel;
 
     // Use this for initialization
     void Start()
@@ -32,11 +34,13 @@ public class GameStateManager : MonoBehaviour
             case GameStates.LostNoMoves:
                 currentState = GameStates.LostNoMoves;
                 popupManager.GetComponent<PopupManager>().Show(losePopup);
+                losePopupReasonLabel.GetComponent<Text>().text = "no moves available";
                 Debug.Log("No Moves");
                 break;
             case GameStates.LostOvershoot:
                 currentState = GameStates.LostOvershoot;
                 popupManager.GetComponent<PopupManager>().Show(losePopup);
+                losePopupReasonLabel.GetComponent<Text>().text = "overshot target number";
                 Debug.Log("Overshoot");
                 break;
             case GameStates.Won:

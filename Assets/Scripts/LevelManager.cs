@@ -54,8 +54,9 @@ public class LevelManager : MonoBehaviour
         // Enable gameplay manager so it can take parameters and generate grid
         gameplayManager.GetComponent<GameplayManager>().Init();
 
-        //TODO update current level & highscore
+        // Update current level & highscore
         PlayerPrefs.SetInt("currentLevel", currentLevelNumber);
+
         if (currentLevelNumber > PlayerPrefs.GetInt("bestResult"))
         {
             PlayerPrefs.SetInt("bestResult", currentLevelNumber);
@@ -71,5 +72,10 @@ public class LevelManager : MonoBehaviour
     public void NextLevel()
     {
         StartLevel(currentLevelNumber + 1);
+    }
+
+    public void RestartLevel()
+    {
+        StartLevel(currentLevelNumber);
     }
 }

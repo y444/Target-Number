@@ -200,7 +200,7 @@ public class GameplayManager : MonoBehaviour
 
         //Update target value display
         currentTargetValue = GetCurrentTargetValue();
-        targetText.text = currentTargetValue.ToString() + "/" + targetValue.ToString();
+        targetText.text = currentTargetValue.ToString("000") + "/" + targetValue.ToString("000");
 
         // Check if the game state has changed and report to the game state manager
         CheckReportGameState();
