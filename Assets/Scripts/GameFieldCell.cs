@@ -63,16 +63,21 @@ public class GameFieldCell : MonoBehaviour
         }
     }
 
+    public string targetHelpMessage;
     public Sprite normalSprite;
     public Color32 normalCellColor;
     public Color32 normalTextColor;
+    public string normalHelpMessage;
     public Sprite usedSprite;
     public Color32 usedCellColor;
     public Color32 usedTextColor;
+    public string usedHelpMessage;
     public Color32 zeroCellColor;
     public Color32 zeroTextColor;
+    public string zeroHelpMessage;
     public Color32 deadCellColor;
     public Color32 deadTextColor;
+    public string deadHelpMessage;
 
 
     // Use this for initialization
@@ -166,7 +171,30 @@ public class GameFieldCell : MonoBehaviour
 
     void HoverOnHelp()
     {
-        helpMessageManager.GetComponent<HelpMessageManager>().DisplayMessage("test");
+        string helpMessage;
+
+        if (isTarget == true)
+        {
+            helpMessage = targetHelpMessage;
+        }
+        else if (IsZero == true)
+        {
+            helpMessage = zeroHelpMessage;
+        }
+        else if (IsDead == true)
+        {
+            helpMessage = deadHelpMessage;
+        }
+        else if (IsUsed == true)
+        {
+            helpMessage = usedHelpMessage;
+        }
+        else
+        {
+            helpMessage = normalHelpMessage;
+        }
+
+        helpMessageManager.GetComponent<HelpMessageManager>().DisplayMessage(helpMessage);
     }
 
     void HoverOffHelp()
