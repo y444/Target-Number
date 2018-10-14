@@ -144,7 +144,7 @@ public class GameplayManager : MonoBehaviour
         {
             for (int j = 0; j < columns; j++)
             {
-                if (gameFieldCells[i, j].IsDead == false)
+                if (gameFieldCells[i, j].IsDead == false && gameFieldCells[i, j].isTarget == true)
                 {
                     return true;
                 }

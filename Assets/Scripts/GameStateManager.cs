@@ -34,7 +34,7 @@ public class GameStateManager : MonoBehaviour
             case GameStates.LostNoMoves:
                 currentState = GameStates.LostNoMoves;
                 popupManager.GetComponent<PopupManager>().Show(losePopup);
-                losePopupReasonLabel.GetComponent<Text>().text = "no moves available";
+                losePopupReasonLabel.GetComponent<Text>().text = "didn't reach target number";
                 Debug.Log("No Moves");
                 break;
             case GameStates.LostOvershoot:
