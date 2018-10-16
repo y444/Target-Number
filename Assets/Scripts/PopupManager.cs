@@ -12,6 +12,9 @@ public class PopupManager : MonoBehaviour
     public GameObject losePopup;
     public GameObject resetPopup;
     public GameObject quitPopup;
+    public GameObject soundPlayer;
+    public AudioSource popupShowSound;
+    public AudioSource popupHideSound;
 
     // Use this for initialization
     void Start()
@@ -27,6 +30,7 @@ public class PopupManager : MonoBehaviour
 
     public void Show(GameObject popup)
     {
+        soundPlayer.GetComponent<SoundPlayer>().Play(popupShowSound);
         popupsBackground.SetActive(true);
         popup.SetActive(true);
     }
@@ -35,6 +39,7 @@ public class PopupManager : MonoBehaviour
 
     public void Hide(GameObject popup)
     {
+        soundPlayer.GetComponent<SoundPlayer>().Play(popupHideSound);
         popupsBackground.SetActive(false);
         popup.SetActive(false);
 

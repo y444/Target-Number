@@ -6,6 +6,7 @@ public class GameFieldCell : MonoBehaviour
 
     public GameplayManager gameplayManager;
     public HelpMessageManager helpMessageManager;
+    public SoundPlayer soundPlayer;
     public GameObject valueText;
     public GameObject targetMark;
     public GameObject leftArrow;
@@ -64,20 +65,29 @@ public class GameFieldCell : MonoBehaviour
     }
 
     public string targetHelpMessage;
+
     public Sprite normalSprite;
     public Color32 normalCellColor;
     public Color32 normalTextColor;
     public string normalHelpMessage;
+    public AudioSource normalPressSound;
+
     public Sprite usedSprite;
     public Color32 usedCellColor;
     public Color32 usedTextColor;
     public string usedHelpMessage;
+    public AudioSource usedPressSound;
+
     public Color32 zeroCellColor;
     public Color32 zeroTextColor;
     public string zeroHelpMessage;
+
     public Color32 deadCellColor;
     public Color32 deadTextColor;
     public string deadHelpMessage;
+
+    public AudioSource arrowsOnSound;
+    public AudioSource arrowsOffSound;
 
 
     // Use this for initialization
@@ -138,10 +148,15 @@ public class GameFieldCell : MonoBehaviour
     {
         if (IsInteractive())
         {
+            soundPlayer.GetComponent<SoundPlayer>().Play(normalPressSound);
             IsUsed = true;
             gameplayManager.OnClicked(row, column);
             UpdateLook();
             HoverOff();
+        }
+        else
+        {
+            soundPlayer.GetComponent<SoundPlayer>().Play(usedPressSound);
         }
     }
 
@@ -150,6 +165,8 @@ public class GameFieldCell : MonoBehaviour
 
         if (IsInteractive())
         {
+            soundPlayer.GetComponent<SoundPlayer>().Play(arrowsOnSound);
+
             leftArrow.SetActive(gameplayManager.IsCellExistAndIsAlive(row, column - 1));
             rightArrow.SetActive(gameplayManager.IsCellExistAndIsAlive(row, column + 1));
             topArrow.SetActive(gameplayManager.IsCellExistAndIsAlive(row - 1, column));
@@ -161,6 +178,11 @@ public class GameFieldCell : MonoBehaviour
 
     public void HoverOff()
     {
+        if (IsInteractive())
+        {
+            soundPlayer.GetComponent<SoundPlayer>().Play(arrowsOffSound);
+        }
+
         leftArrow.SetActive(false);
         rightArrow.SetActive(false);
         topArrow.SetActive(false);

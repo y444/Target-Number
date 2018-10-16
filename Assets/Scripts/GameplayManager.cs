@@ -12,6 +12,14 @@ public class GameplayManager : MonoBehaviour
     public GameObject gameField;
     public GameObject levelManager;
     public GameObject helpMessageManager;
+
+    public GameObject soundPlayer;
+    public AudioSource normalPressSound;
+    public AudioSource usedPressSound;
+    public AudioSource arrowsOnSound;
+    public AudioSource arrowsOffSound;
+    public AudioSource targetSound;
+
     public Text targetText;
 
     public int rows;
@@ -60,9 +68,15 @@ public class GameplayManager : MonoBehaviour
                 cell.gameObject.name = "Button Row " + fieldGenerator.cells[i, j].row.ToString() + " Col " + fieldGenerator.cells[i, j].column.ToString();
                 cell.gameplayManager = gameObject.GetComponent<GameplayManager>();
                 cell.helpMessageManager = helpMessageManager.GetComponent<HelpMessageManager>();
+                cell.soundPlayer = soundPlayer.GetComponent<SoundPlayer>();
+                // Here goes something ugly IMHO
+                cell.normalPressSound = normalPressSound;
+                cell.usedPressSound = usedPressSound;
+                cell.arrowsOnSound = arrowsOnSound;
+                cell.arrowsOffSound = arrowsOffSound;
 
-                // Set values from the generator
-                cell.row = fieldGenerator.cells[i, j].row;
+    // Set values from the generator
+    cell.row = fieldGenerator.cells[i, j].row;
                 cell.column = fieldGenerator.cells[i, j].column;
                 cell.Value = fieldGenerator.cells[i, j].value;
                 cell.isTarget = fieldGenerator.cells[i, j].isTarget;
@@ -200,9 +214,16 @@ public class GameplayManager : MonoBehaviour
         SetIsCellDeadIfExists(row, column + 1);
         SetIsCellDeadIfExists(row, column - 1);
 
-        //Update target value display
-        currentTargetValue = GetCurrentTargetValue();
-        targetText.text = currentTargetValue.ToString("000") + "/" + targetValue.ToString("000");
+        // Check if target value changed
+        if (currentTargetValue != GetCurrentTargetValue())
+        {
+            // Play sound
+            soundPlayer.GetComponent<SoundPlayer>().Play(targetSound);
+
+            // Update target value display
+            currentTargetValue = GetCurrentTargetValue();
+            targetText.text = currentTargetValue.ToString("000") + "/" + targetValue.ToString("000");
+        }
 
         // Check if the game state has changed and report to the game state manager
         CheckReportGameState();
