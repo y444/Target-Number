@@ -121,12 +121,14 @@ public class GameFieldCell : MonoBehaviour
         }
         else if (IsDead)
         {
+            //GetComponent<Animator>().SetTrigger("cellDiesTrigger");
             GetComponent<Image>().sprite = normalSprite;
             GetComponent<Image>().color = deadCellColor;
             valueText.GetComponent<Text>().color = deadTextColor;
         }
         else
         {
+            GetComponent<Animator>().SetTrigger("cellGrowsTrigger");
             GetComponent<Image>().sprite = normalSprite;
             GetComponent<Image>().color = normalCellColor;
             valueText.GetComponent<Text>().color = normalTextColor;
@@ -136,6 +138,7 @@ public class GameFieldCell : MonoBehaviour
         if (isTarget)
         {
             targetMark.SetActive(true);
+            GetComponent<Animator>().SetTrigger("targetGrows");
         }
     }
 
@@ -174,6 +177,7 @@ public class GameFieldCell : MonoBehaviour
         }
 
         HoverOnHelp();
+        GetComponent<Animator>().SetTrigger("arrowsShowTrigger");
     }
 
     public void HoverOff()
@@ -203,13 +207,13 @@ public class GameFieldCell : MonoBehaviour
         {
             helpMessage = zeroHelpMessage;
         }
-        else if (IsDead == true)
-        {
-            helpMessage = deadHelpMessage;
-        }
         else if (IsUsed == true)
         {
             helpMessage = usedHelpMessage;
+        }
+        else if (IsDead == true)
+        {
+            helpMessage = deadHelpMessage;
         }
         else
         {
