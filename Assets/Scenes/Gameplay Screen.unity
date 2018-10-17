@@ -1054,6 +1054,7 @@ GameObject:
   - component: {fileID: 375921258}
   - component: {fileID: 375921259}
   - component: {fileID: 375921260}
+  - component: {fileID: 375921261}
   m_Layer: 5
   m_Name: Global Target
   m_TagString: Untagged
@@ -1135,6 +1136,23 @@ MonoBehaviour:
       m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
         Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   delegates: []
+--- !u!95 &375921261
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 375921257}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 18091f9b3e18c6243814f983619d6ca4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &396743388
 GameObject:
   m_ObjectHideFlags: 0

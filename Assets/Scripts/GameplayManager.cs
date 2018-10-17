@@ -220,6 +220,9 @@ public class GameplayManager : MonoBehaviour
             // Play sound
             soundPlayer.GetComponent<SoundPlayer>().Play(targetSound);
 
+            // Animate
+            targetText.transform.parent.GetComponent<Animator>().SetTrigger("globalTargetGrowsTrigger");
+
             // Update target value display
             currentTargetValue = GetCurrentTargetValue();
             targetText.text = currentTargetValue.ToString("000") + "/" + targetValue.ToString("000");
