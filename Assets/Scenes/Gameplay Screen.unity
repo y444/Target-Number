@@ -1145,7 +1145,7 @@ Animator:
   m_GameObject: {fileID: 375921257}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 18091f9b3e18c6243814f983619d6ca4, type: 2}
+  m_Controller: {fileID: 9100000, guid: 45bd83ea4f78c9c44aaff58afebf0f62, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2399,6 +2399,7 @@ GameObject:
   - component: {fileID: 732819014}
   - component: {fileID: 732819016}
   - component: {fileID: 732819015}
+  - component: {fileID: 732819017}
   m_Layer: 5
   m_Name: Popups Background
   m_TagString: Untagged
@@ -2461,6 +2462,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 732819013}
+--- !u!95 &732819017
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 732819013}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 225a7d37ebbdb284d9ea393747b7377a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &734401354
 GameObject:
   m_ObjectHideFlags: 0

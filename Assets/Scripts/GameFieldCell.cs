@@ -101,6 +101,9 @@ public class GameFieldCell : MonoBehaviour
         // Update value
         valueText.GetComponent<Text>().text = Value.ToString();
 
+        // Animate
+        GetComponent<Animator>().SetTrigger("cellGrowsTrigger");
+
         // Set sprites, sprite colors and text colors
         if (IsUsed)
         {
@@ -121,14 +124,12 @@ public class GameFieldCell : MonoBehaviour
         }
         else if (IsDead)
         {
-            //GetComponent<Animator>().SetTrigger("cellDiesTrigger");
             GetComponent<Image>().sprite = normalSprite;
             GetComponent<Image>().color = deadCellColor;
             valueText.GetComponent<Text>().color = deadTextColor;
         }
         else
         {
-            GetComponent<Animator>().SetTrigger("cellGrowsTrigger");
             GetComponent<Image>().sprite = normalSprite;
             GetComponent<Image>().color = normalCellColor;
             valueText.GetComponent<Text>().color = normalTextColor;
@@ -138,7 +139,7 @@ public class GameFieldCell : MonoBehaviour
         if (isTarget)
         {
             targetMark.SetActive(true);
-            GetComponent<Animator>().SetTrigger("targetGrows");
+            GetComponent<Animator>().SetTrigger("targetGrowsTrigger");
         }
     }
 
@@ -169,7 +170,7 @@ public class GameFieldCell : MonoBehaviour
         if (IsInteractive())
         {
             soundPlayer.GetComponent<SoundPlayer>().Play(arrowsOnSound);
-
+            GetComponent<Animator>().SetTrigger("arrowsShowTrigger");
             leftArrow.SetActive(gameplayManager.IsCellExistAndIsAlive(row, column - 1));
             rightArrow.SetActive(gameplayManager.IsCellExistAndIsAlive(row, column + 1));
             topArrow.SetActive(gameplayManager.IsCellExistAndIsAlive(row - 1, column));
@@ -177,7 +178,6 @@ public class GameFieldCell : MonoBehaviour
         }
 
         HoverOnHelp();
-        GetComponent<Animator>().SetTrigger("arrowsShowTrigger");
     }
 
     public void HoverOff()

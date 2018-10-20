@@ -221,7 +221,7 @@ public class GameplayManager : MonoBehaviour
             soundPlayer.GetComponent<SoundPlayer>().Play(targetSound);
 
             // Animate
-            targetText.transform.parent.GetComponent<Animator>().SetTrigger("globalTargetGrowsTrigger");
+            targetText.transform.parent.GetComponent<Animator>().SetTrigger("globalTargetGrowthTrigger");
 
             // Update target value display
             currentTargetValue = GetCurrentTargetValue();

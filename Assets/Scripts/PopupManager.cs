@@ -40,8 +40,18 @@ public class PopupManager : MonoBehaviour
     public void Hide(GameObject popup)
     {
         soundPlayer.GetComponent<SoundPlayer>().Play(popupHideSound);
-        popupsBackground.SetActive(false);
-        popup.SetActive(false);
+        popupsBackground.GetComponent<Animator>().SetTrigger("popupHideTrigger");
+        StartCoroutine(HideAnimation(popup));
+    }
 
+    IEnumerator HideAnimation(GameObject popup)
+    {   
+        while (popupsBackground.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime <= 1.0f)
+        {
+            Debug.Log(popupsBackground.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
+            yield return null;
+        }
+        popup.SetActive(false);
+        popupsBackground.SetActive(false);
     }
 }
