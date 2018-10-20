@@ -16,6 +16,8 @@ public class PopupManager : MonoBehaviour
     public AudioSource popupShowSound;
     public AudioSource popupHideSound;
 
+    public Animation _animation;
+
     // Use this for initialization
     void Start()
     {
@@ -31,8 +33,9 @@ public class PopupManager : MonoBehaviour
     public void Show(GameObject popup)
     {
         soundPlayer.GetComponent<SoundPlayer>().Play(popupShowSound);
-        popupsBackground.GetComponent<Animator>().SetTrigger("popupShowTrigger");
+        popupsBackground.SetActive(true);
         popup.SetActive(true);
+        _animation.Play("Legacy Show Animation");
     }
 
 
@@ -40,17 +43,17 @@ public class PopupManager : MonoBehaviour
     public void Hide(GameObject popup)
     {
         soundPlayer.GetComponent<SoundPlayer>().Play(popupHideSound);
-        popupsBackground.GetComponent<Animator>().SetTrigger("popupHideTrigger");
+        _animation.Play("Legacy Hide Animation");
         StartCoroutine(HideAnimation(popup));
     }
 
     IEnumerator HideAnimation(GameObject popup)
     {
-        while (popupsBackground.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Hidden") == false)
+        while (_animation.isPlaying)
         {
-            Debug.Log(popupsBackground.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).normalizedTime);
             yield return null;
         }
+        popupsBackground.SetActive(false);
         popup.SetActive(false);
     }
 }
