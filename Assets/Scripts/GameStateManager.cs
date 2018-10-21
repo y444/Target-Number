@@ -14,6 +14,8 @@ public class GameStateManager : MonoBehaviour
     public GameObject winPopup;
     public GameObject losePopup;
     public GameObject losePopupReasonLabel;
+    public string loseNoMovesText;
+    public string loseOvershootText;
     public GameObject soundPlayer;
     public AudioSource winSound;
     public AudioSource loseSound;
@@ -38,14 +40,14 @@ public class GameStateManager : MonoBehaviour
                 currentState = GameStates.LostNoMoves;
                 soundPlayer.GetComponent<SoundPlayer>().Play(loseSound);
                 popupManager.GetComponent<PopupManager>().Show(losePopup);
-                losePopupReasonLabel.GetComponent<Text>().text = "didn't reach target number";
+                losePopupReasonLabel.GetComponent<Text>().text = loseNoMovesText;
                 Debug.Log("No Moves");
                 break;
             case GameStates.LostOvershoot:
                 currentState = GameStates.LostOvershoot;
                 soundPlayer.GetComponent<SoundPlayer>().Play(loseSound);
                 popupManager.GetComponent<PopupManager>().Show(losePopup);
-                losePopupReasonLabel.GetComponent<Text>().text = "overshot target number";
+                losePopupReasonLabel.GetComponent<Text>().text = loseOvershootText;
                 Debug.Log("Overshoot");
                 break;
             case GameStates.Won:

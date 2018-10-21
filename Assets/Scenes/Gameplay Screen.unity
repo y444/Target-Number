@@ -5428,6 +5428,8 @@ MonoBehaviour:
   winPopup: {fileID: 1114272783}
   losePopup: {fileID: 1767351068}
   losePopupReasonLabel: {fileID: 504239194}
+  loseNoMovesText: didn't reach target number
+  loseOvershootText: overshot target number
   soundPlayer: {fileID: 1295150442}
   winSound: {fileID: 461711988}
   loseSound: {fileID: 1881144172}
