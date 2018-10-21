@@ -157,6 +157,7 @@ public class GameFieldCell : MonoBehaviour
             gameplayManager.OnClicked(row, column);
             UpdateLook();
             HoverOff();
+            helpMessageManager.GetComponent<HelpMessageManager>().DisplayMessage(usedHelpMessage);
         }
         else
         {
