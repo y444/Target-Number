@@ -36,11 +36,12 @@ public class GameplayManager : MonoBehaviour
     public int movesLimit;
 
     int currentTargetValue;
+    FieldGenerator fieldGenerator;
     
 
     public GameFieldCell[,] gameFieldCells;
 
-    public void Init()
+    public void Init(InitIntent intent)
     {
         // Get gameplay parameters from level manager
         rows = levelManager.GetComponent<LevelManager>().rows;
@@ -53,7 +54,10 @@ public class GameplayManager : MonoBehaviour
         gameField.GetComponent<GridLayoutGroup>().constraintCount = columns;
 
         // Generate the field & pass the target value
-        FieldGenerator fieldGenerator = new FieldGenerator(rows, columns, maxValue, numberOfTargets, movesLimit);
+        if (intent == InitIntent.NewLevel)
+        {
+            fieldGenerator = new FieldGenerator(rows, columns, maxValue, numberOfTargets, movesLimit);
+        }
 
         // UNCOMMENT THIS WHEN GENERATOR IS DONE
         //targetValue = fieldGenerator.targetValue;
