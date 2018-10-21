@@ -30,4 +30,9 @@ public class Cell
         this.row = row;
         this.column = column;
     }
+
+    public Cell Clone()
+    {
+        return new Cell(row, column, value, isTarget);
+    }
 }

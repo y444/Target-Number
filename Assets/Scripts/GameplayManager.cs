@@ -48,7 +48,7 @@ public class GameplayManager : MonoBehaviour
         FieldGenerator fieldGenerator = new FieldGenerator(rows, columns, maxValue, numberOfTargets);
 
         // UNCOMMENT THIS WHEN GENERATOR IS DONE
-        //targetValue = fieldGenerator.targetValue;
+        targetValue = fieldGenerator.targetValue;
 
         // Set global value text in the top HUD
         currentTargetValue = 0;
