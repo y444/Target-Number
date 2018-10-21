@@ -12,7 +12,7 @@ public class FieldGenerator
     public int numberOfTargets;
     public Cell[,] cells;
 
-    public FieldGenerator(int rows, int columns, int maxValue, int numberOfTargets)
+    public FieldGenerator(int rows, int columns, int maxValue, int numberOfTargets, int movesLimit)
     {
 
         this.maxValue = maxValue;

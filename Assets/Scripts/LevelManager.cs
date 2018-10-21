@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     public int columns;
     public int maxValue;
     public int numberOfTargets;
+    public int movesLimit;
     public GameObject levelNumberText;
     public GameObject gameplayManager;
     public Level[] levels;

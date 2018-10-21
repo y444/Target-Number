@@ -4,6 +4,12 @@ using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum InitIntent
+{
+    NewLevel,
+    ResetLevel
+};
+
 public class GameplayManager : MonoBehaviour
 {
 
@@ -27,6 +33,7 @@ public class GameplayManager : MonoBehaviour
     public int maxValue;
     public int numberOfTargets;
     public int targetValue;
+    public int movesLimit;
 
     int currentTargetValue;
     
@@ -40,12 +47,13 @@ public class GameplayManager : MonoBehaviour
         columns = levelManager.GetComponent<LevelManager>().columns;
         maxValue = levelManager.GetComponent<LevelManager>().maxValue;
         numberOfTargets = levelManager.GetComponent<LevelManager>().numberOfTargets;
+        movesLimit = levelManager.GetComponent<LevelManager>().movesLimit;
 
         // Fix grid layout to make correct number of columns
         gameField.GetComponent<GridLayoutGroup>().constraintCount = columns;
 
         // Generate the field & pass the target value
-        FieldGenerator fieldGenerator = new FieldGenerator(rows, columns, maxValue, numberOfTargets);
+        FieldGenerator fieldGenerator = new FieldGenerator(rows, columns, maxValue, numberOfTargets, movesLimit);
 
         // UNCOMMENT THIS WHEN GENERATOR IS DONE
         //targetValue = fieldGenerator.targetValue;
