@@ -75,8 +75,8 @@ public class GameplayManager : MonoBehaviour
                 cell.arrowsOnSound = arrowsOnSound;
                 cell.arrowsOffSound = arrowsOffSound;
 
-    // Set values from the generator
-    cell.row = fieldGenerator.cells[i, j].row;
+                // Set values from the generator
+                cell.row = fieldGenerator.cells[i, j].row;
                 cell.column = fieldGenerator.cells[i, j].column;
                 cell.Value = fieldGenerator.cells[i, j].value;
                 cell.isTarget = fieldGenerator.cells[i, j].isTarget;
