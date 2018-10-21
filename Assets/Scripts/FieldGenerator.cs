@@ -100,7 +100,7 @@ public class FieldGenerator
                 //calculate neighboorsCount
                 foreach (Cell cell in solutionCells)
                 {
-                    if (cell.isTarget == false)
+                    if (cell != target)
                     {
                         cellToNeighboorsCount[cell] = GetNeighboorsCount(cell, solutionCells);
                     }
@@ -109,7 +109,7 @@ public class FieldGenerator
                 List<Cell> cellsToUse = new List<Cell>(cellToNeighboorsCount.Keys);
 
                 cellsToUse.Sort((key1, key2) => cellToNeighboorsCount[key1] - cellToNeighboorsCount[key2]);
-
+                Debug.Log("is it zero? " + cellsToUse.Count);
                 Cell currentCell = cellsToUse.First();
                 finalSoultion.Add(currentCell);
                 solutionCells.Remove(currentCell);
