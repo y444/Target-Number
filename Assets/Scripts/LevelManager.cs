@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
     public int columns;
     public int maxValue;
     public int numberOfTargets;
+    public int movesLimit;
     public GameObject levelNumberText;
     public GameObject gameplayManager;
     public Level[] levels;
@@ -20,15 +21,15 @@ public class LevelManager : MonoBehaviour
         // Ask prefs what level should we start at
         if (PlayerPrefs.HasKey("currentLevel"))
         {
-            StartLevel(PlayerPrefs.GetInt("currentLevel"));
+            StartLevel(PlayerPrefs.GetInt("currentLevel"), InitIntent.NewLevel);
         }
         else
         {
-            StartLevel(0);
+            StartLevel(0, InitIntent.NewLevel);
         }
     }
 
-    public void StartLevel(int levelNumber)
+    public void StartLevel(int levelNumber, InitIntent intent)
     {
         // Disable gameplay manager
         gameplayManager.GetComponent<GameplayManager>().Reset();
@@ -52,7 +53,7 @@ public class LevelManager : MonoBehaviour
         }
 
         // Enable gameplay manager so it can take parameters and generate grid
-        gameplayManager.GetComponent<GameplayManager>().Init();
+        gameplayManager.GetComponent<GameplayManager>().Init(intent);
 
         // Update current level & highscore
         PlayerPrefs.SetInt("currentLevel", currentLevelNumber);
@@ -71,11 +72,11 @@ public class LevelManager : MonoBehaviour
 
     public void NextLevel()
     {
-        StartLevel(currentLevelNumber + 1);
+        StartLevel(currentLevelNumber + 1, InitIntent.NewLevel);
     }
 
     public void RestartLevel()
     {
-        StartLevel(currentLevelNumber);
+        StartLevel(currentLevelNumber, InitIntent.ResetLevel);
     }
 }

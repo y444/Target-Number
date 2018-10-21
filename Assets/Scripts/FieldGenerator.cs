@@ -15,7 +15,7 @@ public class FieldGenerator
 
     Cell[,] probableField;
 
-    public FieldGenerator(int rows, int columns, int maxValue, int numberOfTargets)
+    public FieldGenerator(int rows, int columns, int maxValue, int numberOfTargets, int movesLimit)
     {
         this.rows = rows;
         this.columns = columns;
@@ -44,8 +44,7 @@ public class FieldGenerator
                 cells[randomRow, randomColumn].isTarget = true;
                 cells[randomRow, randomColumn].value = 0;
                 k++;
-                //replace with actual data
-                targetToMoveCount[cells[randomRow, randomColumn]] = 4;
+                targetToMoveCount[cells[randomRow, randomColumn]] = movesLimit;
             }
         }
         GenerateSolutionPattern(targetToMoveCount);

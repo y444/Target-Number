@@ -4,6 +4,12 @@ using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 using UnityEngine.UI;
 
+public enum InitIntent
+{
+    NewLevel,
+    ResetLevel
+};
+
 public class GameplayManager : MonoBehaviour
 {
 
@@ -27,25 +33,31 @@ public class GameplayManager : MonoBehaviour
     public int maxValue;
     public int numberOfTargets;
     public int targetValue;
+    public int movesLimit;
 
     int currentTargetValue;
+    FieldGenerator fieldGenerator;
     
 
     public GameFieldCell[,] gameFieldCells;
 
-    public void Init()
+    public void Init(InitIntent intent)
     {
         // Get gameplay parameters from level manager
         rows = levelManager.GetComponent<LevelManager>().rows;
         columns = levelManager.GetComponent<LevelManager>().columns;
         maxValue = levelManager.GetComponent<LevelManager>().maxValue;
         numberOfTargets = levelManager.GetComponent<LevelManager>().numberOfTargets;
+        movesLimit = levelManager.GetComponent<LevelManager>().movesLimit;
 
         // Fix grid layout to make correct number of columns
         gameField.GetComponent<GridLayoutGroup>().constraintCount = columns;
 
         // Generate the field & pass the target value
-        FieldGenerator fieldGenerator = new FieldGenerator(rows, columns, maxValue, numberOfTargets);
+        if (intent == InitIntent.NewLevel)
+        {
+            fieldGenerator = new FieldGenerator(rows, columns, maxValue, numberOfTargets, movesLimit);
+        }
 
         // UNCOMMENT THIS WHEN GENERATOR IS DONE
         targetValue = fieldGenerator.targetValue;
@@ -75,8 +87,8 @@ public class GameplayManager : MonoBehaviour
                 cell.arrowsOnSound = arrowsOnSound;
                 cell.arrowsOffSound = arrowsOffSound;
 
-    // Set values from the generator
-    cell.row = fieldGenerator.cells[i, j].row;
+                // Set values from the generator
+                cell.row = fieldGenerator.cells[i, j].row;
                 cell.column = fieldGenerator.cells[i, j].column;
                 cell.Value = fieldGenerator.cells[i, j].value;
                 cell.isTarget = fieldGenerator.cells[i, j].isTarget;
