@@ -163,6 +163,10 @@ public class FieldGenerator
 
     void EmulateClickOnCell(Cell cell)
     {
+        if (cell.value == 0)
+        {
+            return;
+        }
         wasPressed[cell.row, cell.column] = true;
         if (IsCellExist(cell.row + 1, cell.column) && wasPressed[cell.row + 1, cell.column] == false)
         {
