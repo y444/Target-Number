@@ -119,38 +119,41 @@ public class FieldGenerator
 
     void GenerateFinalFieldBasedOnSolution(List<Cell> solution)
     {
-        for (int i = 0; i < rows; i++)
+        while (targetValue == 0)
         {
-            for (int j = 0; j < columns; j++)
+            for (int i = 0; i < rows; i++)
             {
-                if (cells[i, j].isTarget == false)
+                for (int j = 0; j < columns; j++)
                 {
-                    cells[i, j].value = Random.Range(0, maxValue + 1);
+                    if (cells[i, j].isTarget == false)
+                    {
+                        cells[i, j].value = Random.Range(0, maxValue + 1);
+                    }
                 }
             }
-        }
-        probableField = CopyArrayFrom(cells);
+            probableField = CopyArrayFrom(cells);
 
-        string debugStr = "Solution is: ";
+            string debugStr = "Solution is: ";
 
-        List<Cell> wasAlreadyClicked = new List<Cell>();
+            List<Cell> wasAlreadyClicked = new List<Cell>();
 
-        foreach (Cell cell in solution)
-        {
-            if (wasAlreadyClicked.Contains(cell) == false)
+            foreach (Cell cell in solution)
             {
-                debugStr += "[" + cell.row + "," + cell.column + "]";
-                EmulateClickOnCell(cell);
-                wasAlreadyClicked.Add(cell);
+                if (wasAlreadyClicked.Contains(cell) == false)
+                {
+                    debugStr += "[" + cell.row + "," + cell.column + "]";
+                    EmulateClickOnCell(cell);
+                    wasAlreadyClicked.Add(cell);
+                }
             }
-        }
-        Debug.Log(debugStr);
+            Debug.Log(debugStr);
 
-        foreach (Cell cell in cells)
-        {
-            if (cell.isTarget)
+            foreach (Cell cell in cells)
             {
-                targetValue += cell.value;
+                if (cell.isTarget)
+                {
+                    targetValue += cell.value;
+                }
             }
         }
         cells = CopyArrayFrom(probableField);
