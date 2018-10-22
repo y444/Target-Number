@@ -13,6 +13,7 @@ public class FieldGenerator
     public int numberOfTargets;
     public Cell[,] cells;
 
+    bool[,] wasPressed;
     Cell[,] probableField;
 
     public FieldGenerator(int rows, int columns, int maxValue, int numberOfTargets, int movesLimit)
@@ -121,6 +122,8 @@ public class FieldGenerator
     {
         while (targetValue == 0)
         {
+            wasPressed = new bool[rows, columns];
+
             for (int i = 0; i < rows; i++)
             {
                 for (int j = 0; j < columns; j++)
@@ -146,7 +149,6 @@ public class FieldGenerator
                     wasAlreadyClicked.Add(cell);
                 }
             }
-            //Debug.Log(debugStr);
 
             foreach (Cell cell in cells)
             {
@@ -161,19 +163,20 @@ public class FieldGenerator
 
     void EmulateClickOnCell(Cell cell)
     {
-        if (IsCellExist(cell.row + 1, cell.column))
+        wasPressed[cell.row, cell.column] = true;
+        if (IsCellExist(cell.row + 1, cell.column) && wasPressed[cell.row + 1, cell.column] == false)
         {
             cells[cell.row + 1, cell.column].value += cell.value;
         }
-        if (IsCellExist(cell.row - 1, cell.column))
+        if (IsCellExist(cell.row - 1, cell.column) && wasPressed[cell.row - 1, cell.column] == false)
         {
             cells[cell.row - 1, cell.column].value += cell.value;
         }
-        if (IsCellExist(cell.row, cell.column + 1))
+        if (IsCellExist(cell.row, cell.column + 1) && wasPressed[cell.row, cell.column + 1] == false)
         {
             cells[cell.row, cell.column + 1].value += cell.value;
         }
-        if (IsCellExist(cell.row, cell.column - 1))
+        if (IsCellExist(cell.row, cell.column - 1) && wasPressed[cell.row, cell.column - 1] == false)
         {
             cells[cell.row, cell.column - 1].value += cell.value;
         }
