@@ -144,7 +144,7 @@ public class FieldGenerator
                 wasAlreadyClicked.Add(cell);
             }
         }
-        Debug.Log(debugStr);
+        //Debug.Log(debugStr);
 
         foreach (Cell cell in cells)
         {
