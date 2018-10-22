@@ -51,7 +51,7 @@ public class LevelManager : MonoBehaviour
             columns = levels[levels.Length - 1].columns;
             maxValue = levels[levels.Length - 1].maxValue;
             numberOfTargets = levels[levels.Length - 1].numberOfTargets;
-            movesLimit = levels[currentLevelNumber].movesLimit;
+            movesLimit = levels[levels.Length - 1].movesLimit;
         }
 
         // Enable gameplay manager so it can take parameters and generate grid
