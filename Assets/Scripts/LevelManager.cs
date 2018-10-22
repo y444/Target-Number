@@ -69,7 +69,7 @@ public class LevelManager : MonoBehaviour
         // Set level number in top HUD
         levelNumberText.GetComponent<Text>().text = "Level " + (currentLevelNumber + 1).ToString();
 
-        Debug.Log("Level " + currentLevelNumber.ToString() + " start");
+        //Debug.Log("Level " + (currentLevelNumber + 1).ToString() + " start");
     }
 
     public void NextLevel()

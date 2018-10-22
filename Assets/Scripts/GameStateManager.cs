@@ -41,20 +41,20 @@ public class GameStateManager : MonoBehaviour
                 soundPlayer.GetComponent<SoundPlayer>().Play(loseSound);
                 popupManager.GetComponent<PopupManager>().Show(losePopup);
                 losePopupReasonLabel.GetComponent<Text>().text = loseNoMovesText;
-                Debug.Log("No Moves");
+                //Debug.Log("No Moves");
                 break;
             case GameStates.LostOvershoot:
                 currentState = GameStates.LostOvershoot;
                 soundPlayer.GetComponent<SoundPlayer>().Play(loseSound);
                 popupManager.GetComponent<PopupManager>().Show(losePopup);
                 losePopupReasonLabel.GetComponent<Text>().text = loseOvershootText;
-                Debug.Log("Overshoot");
+                //Debug.Log("Overshoot");
                 break;
             case GameStates.Won:
                 currentState = GameStates.Won;
                 soundPlayer.GetComponent<SoundPlayer>().Play(winSound);
                 popupManager.GetComponent<PopupManager>().Show(winPopup);
-                Debug.Log("Won");
+                //Debug.Log("Won");
                 break;
             case GameStates.Normal:
                 currentState = GameStates.Normal;

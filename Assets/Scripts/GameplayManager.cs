@@ -185,9 +185,9 @@ public class GameplayManager : MonoBehaviour
     void CheckReportGameState()
     {
         int currentTargetValue = GetCurrentTargetValue();
-        Debug.Log(currentTargetValue);
+        //Debug.Log(currentTargetValue);
         bool hasMoves = HasMoves();
-        Debug.Log(hasMoves);
+        //Debug.Log(hasMoves);
 
         if (currentTargetValue < targetValue)
         {
