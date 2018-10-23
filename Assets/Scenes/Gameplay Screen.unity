@@ -2508,6 +2508,7 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: c8a1d59693e344e36865fc2d506ce0ca, type: 2}
   - {fileID: 7400000, guid: f6aa1bb53b62340dabc22f85a494cffd, type: 2}
+  - {fileID: 7400000, guid: 4577fa7735dbb7245a42e05306d57f7a, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -5808,79 +5809,84 @@ MonoBehaviour:
     columns: 2
     maxValue: 3
     numberOfTargets: 1
-    movesLimit: 3
-  - rows: 3
-    columns: 3
+    movesLimit: 1
+  - rows: 2
+    columns: 2
+    maxValue: 3
+    numberOfTargets: 1
+    movesLimit: 2
+  - rows: 2
+    columns: 2
     maxValue: 3
     numberOfTargets: 1
     movesLimit: 3
+  - rows: 2
+    columns: 2
+    maxValue: 3
+    numberOfTargets: 2
+    movesLimit: 1
+  - rows: 2
+    columns: 2
+    maxValue: 3
+    numberOfTargets: 2
+    movesLimit: 2
+  - rows: 2
+    columns: 2
+    maxValue: 3
+    numberOfTargets: 2
+    movesLimit: 3
+  - rows: 3
+    columns: 3
+    maxValue: 5
+    numberOfTargets: 1
+    movesLimit: 3
   - rows: 3
     columns: 3
     maxValue: 5
     numberOfTargets: 1
     movesLimit: 4
-  - rows: 4
-    columns: 4
-    maxValue: 5
-    numberOfTargets: 1
-    movesLimit: 4
-  - rows: 4
-    columns: 4
-    maxValue: 5
-    numberOfTargets: 1
-    movesLimit: 5
-  - rows: 4
-    columns: 4
-    maxValue: 5
-    numberOfTargets: 1
-    movesLimit: 6
-  - rows: 4
-    columns: 4
+  - rows: 3
+    columns: 3
     maxValue: 5
     numberOfTargets: 2
-    movesLimit: 4
-  - rows: 5
-    columns: 5
-    maxValue: 5
-    numberOfTargets: 1
-    movesLimit: 6
+    movesLimit: 3
+  - rows: 4
+    columns: 4
+    maxValue: 9
+    numberOfTargets: 3
+    movesLimit: 2
   - rows: 5
     columns: 5
     maxValue: 9
-    numberOfTargets: 1
-    movesLimit: 6
-  - rows: 6
-    columns: 6
-    maxValue: 9
-    numberOfTargets: 1
-    movesLimit: 6
-  - rows: 6
-    columns: 6
-    maxValue: 9
     numberOfTargets: 2
-    movesLimit: 4
-  - rows: 6
-    columns: 6
+    movesLimit: 3
+  - rows: 5
+    columns: 5
     maxValue: 9
-    numberOfTargets: 2
-    movesLimit: 4
-  - rows: 6
-    columns: 6
+    numberOfTargets: 3
+    movesLimit: 2
+  - rows: 5
+    columns: 5
     maxValue: 9
-    numberOfTargets: 2
-    movesLimit: 5
-  - rows: 6
-    columns: 6
-    maxValue: 9
-    numberOfTargets: 2
-    movesLimit: 6
-  - rows: 6
-    columns: 6
+    numberOfTargets: 3
+    movesLimit: 3
+  - rows: 5
+    columns: 5
     maxValue: 9
     numberOfTargets: 3
     movesLimit: 4
-  - rows: 6
-    columns: 6
+  - rows: 5
+    columns: 5
     maxValue: 9
-    numberOfTargets: 3
-    movesLimit: 6
+    numberOfTargets: 4
+    movesLimit: 2
+  - rows: 5
+    columns: 5
+    maxValue: 9
+    numberOfTargets: 4
+    movesLimit: 4
+  - rows: 5
+    columns: 5
+    maxValue: 9
+    numberOfTargets: 4
+    movesLimit: 3
