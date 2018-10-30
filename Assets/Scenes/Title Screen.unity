@@ -396,7 +396,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27079fef59b64ed49892f2954494e41f, type: 3}
+    m_Font: {fileID: 12800000, guid: 123e005b93afa63439ebbfc3166663f9, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 0
@@ -408,7 +408,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: new game
+  m_Text: NEW GAME
 --- !u!222 &148285036
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -701,7 +701,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27079fef59b64ed49892f2954494e41f, type: 3}
+    m_Font: {fileID: 12800000, guid: 123e005b93afa63439ebbfc3166663f9, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 0
@@ -713,7 +713,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: continue
+  m_Text: CONTINUE
 --- !u!222 &575204765
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -854,8 +854,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: eb1f7de228dae48428ff5badf65ba8a8, type: 3}
-    m_FontSize: 80
+    m_Font: {fileID: 12800000, guid: 123e005b93afa63439ebbfc3166663f9, type: 3}
+    m_FontSize: 64
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -1567,7 +1567,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27079fef59b64ed49892f2954494e41f, type: 3}
+    m_Font: {fileID: 12800000, guid: 123e005b93afa63439ebbfc3166663f9, type: 3}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
@@ -1579,7 +1579,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Best result: Level '
+  m_Text: 'Best result: 0'
 --- !u!222 &2136344252
 CanvasRenderer:
   m_ObjectHideFlags: 0

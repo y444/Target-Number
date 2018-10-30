@@ -168,7 +168,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: eb1f7de228dae48428ff5badf65ba8a8, type: 3}
+    m_Font: {fileID: 12800000, guid: 123e005b93afa63439ebbfc3166663f9, type: 3}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
@@ -180,7 +180,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: end the game?
+  m_Text: END GAME?
 --- !u!222 &53330152
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -923,7 +923,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27079fef59b64ed49892f2954494e41f, type: 3}
+    m_Font: {fileID: 12800000, guid: 123e005b93afa63439ebbfc3166663f9, type: 3}
     m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
@@ -998,7 +998,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27079fef59b64ed49892f2954494e41f, type: 3}
+    m_Font: {fileID: 12800000, guid: 123e005b93afa63439ebbfc3166663f9, type: 3}
     m_FontSize: 48
     m_FontStyle: 0
     m_BestFit: 1
@@ -1330,8 +1330,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27079fef59b64ed49892f2954494e41f, type: 3}
-    m_FontSize: 18
+    m_Font: {fileID: 12800000, guid: 123e005b93afa63439ebbfc3166663f9, type: 3}
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -2556,7 +2556,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27079fef59b64ed49892f2954494e41f, type: 3}
+    m_Font: {fileID: 12800000, guid: 123e005b93afa63439ebbfc3166663f9, type: 3}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
@@ -2568,7 +2568,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Level 0
+  m_Text: LEVEL 0
 --- !u!222 &847116749
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3352,8 +3352,8 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27079fef59b64ed49892f2954494e41f, type: 3}
-    m_FontSize: 18
+    m_Font: {fileID: 12800000, guid: 123e005b93afa63439ebbfc3166663f9, type: 3}
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -3667,7 +3667,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: eb1f7de228dae48428ff5badf65ba8a8, type: 3}
+    m_Font: {fileID: 12800000, guid: 123e005b93afa63439ebbfc3166663f9, type: 3}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
@@ -3679,7 +3679,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: you lose!
+  m_Text: YOU LOST!
 --- !u!222 &1356703980
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3741,7 +3741,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: eb1f7de228dae48428ff5badf65ba8a8, type: 3}
+    m_Font: {fileID: 12800000, guid: 123e005b93afa63439ebbfc3166663f9, type: 3}
     m_FontSize: 32
     m_FontStyle: 0
     m_BestFit: 0
@@ -3753,7 +3753,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: you win!
+  m_Text: YOU WIN!
 --- !u!222 &1441629252
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3815,7 +3815,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27079fef59b64ed49892f2954494e41f, type: 3}
+    m_Font: {fileID: 12800000, guid: 123e005b93afa63439ebbfc3166663f9, type: 3}
     m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
@@ -3827,7 +3827,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: cancel
+  m_Text: CANCEL
 --- !u!222 &1476105990
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3889,7 +3889,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27079fef59b64ed49892f2954494e41f, type: 3}
+    m_Font: {fileID: 12800000, guid: 123e005b93afa63439ebbfc3166663f9, type: 3}
     m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
@@ -3901,7 +3901,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: end
+  m_Text: END
 --- !u!222 &1489102171
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3963,7 +3963,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: eb1f7de228dae48428ff5badf65ba8a8, type: 3}
+    m_Font: {fileID: 12800000, guid: 123e005b93afa63439ebbfc3166663f9, type: 3}
     m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
@@ -3975,7 +3975,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: In order TO play the game - finish coding it
+  m_Text: In order to play the game - finish coding it
 --- !u!222 &1499072583
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4407,19 +4407,19 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27079fef59b64ed49892f2954494e41f, type: 3}
-    m_FontSize: 18
+    m_Font: {fileID: 12800000, guid: 123e005b93afa63439ebbfc3166663f9, type: 3}
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 72
-    m_Alignment: 4
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: progress will be saved
+  m_Text: Progress will be saved
 --- !u!222 &1684917401
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4616,8 +4616,8 @@ MonoBehaviour:
   winPopup: {fileID: 1114272783}
   losePopup: {fileID: 1767351068}
   losePopupReasonLabel: {fileID: 504239194}
-  loseNoMovesText: didn't reach target number
-  loseOvershootText: overshot target number
+  loseNoMovesText: Didn't reach target number
+  loseOvershootText: Overshot target number
   soundPlayer: {fileID: 1295150442}
   winSound: {fileID: 461711988}
   loseSound: {fileID: 1881144172}
@@ -4776,7 +4776,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
-    m_Font: {fileID: 12800000, guid: 27079fef59b64ed49892f2954494e41f, type: 3}
+    m_Font: {fileID: 12800000, guid: 123e005b93afa63439ebbfc3166663f9, type: 3}
     m_FontSize: 24
     m_FontStyle: 0
     m_BestFit: 0
