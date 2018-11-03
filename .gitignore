@@ -35,3 +35,4 @@ sysinfo.txt
 *.apk
 *.unitypackage
 Store Assets/itch.io/*
+.vscode/settings.json

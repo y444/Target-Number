@@ -5,20 +5,17 @@ using UnityEngine.UI;
 
 public class HelpMessageManager : MonoBehaviour {
 
+    public GameObject helpPopup;
     public Text informationText;
-    public string defaultMessage;
-
-	void Start () {
-        DisplayDefaultMessage();	
-	}
 
     public void DisplayMessage(string message)
     {
+        helpPopup.SetActive(true);
         informationText.text = message;
     }
 
-    public void DisplayDefaultMessage()
+    public void HideMessage()
     {
-        informationText.text = defaultMessage;
+        helpPopup.SetActive(false);
     }
 }

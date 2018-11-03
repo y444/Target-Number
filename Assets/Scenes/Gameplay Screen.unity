@@ -538,8 +538,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 514e6a3d1de8d00468d53ef401f30a80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  helpPopup: {fileID: 1729360933}
   informationText: {fileID: 1499072582}
-  defaultMessage: reach the target number by clicking on cells
 --- !u!1 &291416513
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,7 +836,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 286067776}
-          m_MethodName: DisplayDefaultMessage
+          m_MethodName: HideMessage
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1823,7 +1823,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 286067776}
-          m_MethodName: DisplayDefaultMessage
+          m_MethodName: HideMessage
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2130,7 +2130,6 @@ Animation:
   m_Animations:
   - {fileID: 7400000, guid: c8a1d59693e344e36865fc2d506ce0ca, type: 2}
   - {fileID: 7400000, guid: f6aa1bb53b62340dabc22f85a494cffd, type: 2}
-  - {fileID: 7400000, guid: 4577fa7735dbb7245a42e05306d57f7a, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
@@ -2608,7 +2607,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 286067776}
-          m_MethodName: DisplayDefaultMessage
+          m_MethodName: HideMessage
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4523,7 +4522,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 286067776}
-          m_MethodName: DisplayDefaultMessage
+          m_MethodName: HideMessage
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -4630,13 +4629,14 @@ GameObject:
   - component: {fileID: 1729360934}
   - component: {fileID: 1729360936}
   - component: {fileID: 1729360935}
+  - component: {fileID: 1729360937}
   m_Layer: 5
   m_Name: Help Popup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1729360934
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4690,6 +4690,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1729360933}
+--- !u!95 &1729360937
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1729360933}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 273f1f155b821b549bc6e044bb21d578, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1767351068
 GameObject:
   m_ObjectHideFlags: 0

@@ -226,6 +226,6 @@ public class GameFieldCell : MonoBehaviour
 
     void HoverOffHelp()
     {
-        helpMessageManager.GetComponent<HelpMessageManager>().DisplayDefaultMessage();
+        helpMessageManager.GetComponent<HelpMessageManager>().HideMessage();
     }
 }
