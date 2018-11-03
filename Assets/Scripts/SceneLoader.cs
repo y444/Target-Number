@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneLoader : MonoBehaviour {
+public class SceneLoader : MonoBehaviour
+{
 
     public void LoadGameplayScene()
     {
@@ -13,5 +14,22 @@ public class SceneLoader : MonoBehaviour {
     public void LoadTitleScene()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void LoadTutorialScene()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void LoadTurorialOrGameplayScene()
+    {
+        if (!PlayerPrefs.HasKey("tutorialComplete"))
+        {
+            LoadTutorialScene();
+        }
+        else
+        {
+            LoadGameplayScene();
+        }
     }
 }
