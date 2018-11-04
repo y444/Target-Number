@@ -18,6 +18,11 @@ public class GameplayManager : MonoBehaviour
     public GameObject gameField;
     public GameObject levelManager;
     public GameObject helpMessageManager;
+    public GameObject progressBar;
+    public GameObject progressBarUnderlay;
+    public float progressBarDefaultWidth;
+    public Color32 progressBarDefaultColor;
+    public Color32 progressBarOvershootColor;
 
     public GameObject soundPlayer;
     public AudioSource normalPressSound;
@@ -26,7 +31,8 @@ public class GameplayManager : MonoBehaviour
     public AudioSource arrowsOffSound;
     public AudioSource targetSound;
 
-    public Text targetText;
+    public Text globalTargetText;
+    public Text currentTargetText;
 
     public int rows;
     public int columns;
@@ -59,12 +65,15 @@ public class GameplayManager : MonoBehaviour
             fieldGenerator = new FieldGenerator(rows, columns, maxValue, numberOfTargets, movesLimit);
         }
 
-        // UNCOMMENT THIS WHEN GENERATOR IS DONE
         targetValue = fieldGenerator.targetValue;
 
         // Set global value text in the top HUD
         currentTargetValue = 0;
-        targetText.text = currentTargetValue.ToString("000") + "/" + targetValue.ToString("000");
+        globalTargetText.text = targetValue.ToString();
+        currentTargetText.text = currentTargetValue.ToString();
+
+        // Set progress bar
+        resetProgressBar();
 
         // Create an array of game field cells
         gameFieldCells = new GameFieldCell[rows, columns];
@@ -233,14 +242,42 @@ public class GameplayManager : MonoBehaviour
             soundPlayer.GetComponent<SoundPlayer>().Play(targetSound);
 
             // Animate
-            targetText.transform.parent.GetComponent<Animator>().SetTrigger("globalTargetGrowthTrigger");
+            currentTargetText.transform.parent.GetComponent<Animator>().SetTrigger("globalTargetGrowthTrigger");
 
             // Update target value display
             currentTargetValue = GetCurrentTargetValue();
-            targetText.text = currentTargetValue.ToString("000") + "/" + targetValue.ToString("000");
+            globalTargetText.text = targetValue.ToString();
+            currentTargetText.text = currentTargetValue.ToString();
+            growProgressBar();
         }
 
         // Check if the game state has changed and report to the game state manager
         CheckReportGameState();
+    }
+
+    public void growProgressBar()
+    {
+        float x = progressBar.GetComponent<RectTransform>().rect.width;
+        float totalWidth = progressBarUnderlay.GetComponent<RectTransform>().rect.width;
+        float height = progressBar.GetComponent<RectTransform>().rect.height;
+        float newWidth = totalWidth * currentTargetValue / targetValue;
+        RectTransform progressBarSize = progressBar.GetComponent<RectTransform>();
+        if (newWidth > progressBarDefaultWidth)
+        {
+            progressBarSize.sizeDelta = new Vector2(newWidth, height);
+        }
+        if (newWidth > totalWidth)
+        {
+            progressBarSize.sizeDelta = new Vector2(totalWidth, height);
+            progressBar.GetComponent<Image>().color = progressBarOvershootColor;    
+        }
+    }
+
+    public void resetProgressBar()
+    {
+        float height = progressBar.GetComponent<RectTransform>().rect.height;
+        RectTransform progressBarSize = progressBar.GetComponent<RectTransform>();
+        progressBarSize.sizeDelta = new Vector2(progressBarDefaultWidth, height);
+        progressBar.GetComponent<Image>().color = progressBarDefaultColor;
     }
 }
