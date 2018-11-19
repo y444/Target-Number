@@ -23,13 +23,14 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadTurorialOrGameplayScene()
     {
-        if (!PlayerPrefs.HasKey("tutorialComplete"))
-        {
-            LoadTutorialScene();
-        }
-        else
-        {
-            LoadGameplayScene();
-        }
+        LoadGameplayScene();
+        // if (!PlayerPrefs.HasKey("tutorialComplete"))
+        // {
+        //     LoadTutorialScene();
+        // }
+        // else
+        // {
+        //     LoadGameplayScene();
+        // }
     }
 }
