@@ -370,7 +370,7 @@ MonoBehaviour:
   row: 0
   column: 0
   isTarget: 0
-  targetHelpMessage: sum of cells such as this one must be equal to the target number
+  targetHelpMessage: target-marked numbers are summed on top
   normalSprite: {fileID: 21300000, guid: f4cf83bf34d0d5449ab48e0ab27e4818, type: 3}
   normalCellColor:
     serializedVersion: 2
@@ -378,7 +378,7 @@ MonoBehaviour:
   normalTextColor:
     serializedVersion: 2
     rgba: 4294967295
-  normalHelpMessage: click this cell to add its value to neighbour cells
+  normalHelpMessage: click this number to add it to neighbour numbers
   normalPressSound: {fileID: 0}
   usedSprite: {fileID: 21300000, guid: 49e973ab18ec2d6439533f988a0dc92a, type: 3}
   usedCellColor:
@@ -387,7 +387,7 @@ MonoBehaviour:
   usedTextColor:
     serializedVersion: 2
     rgba: 4290164406
-  usedHelpMessage: you've clicked this one - it won't grow anymore
+  usedHelpMessage: can't click used numbers, also they won't grow
   usedPressSound: {fileID: 0}
   zeroCellColor:
     serializedVersion: 2
@@ -395,14 +395,14 @@ MonoBehaviour:
   zeroTextColor:
     serializedVersion: 2
     rgba: 4290164406
-  zeroHelpMessage: can't click this one - it's zero, so there's nothing to add
+  zeroHelpMessage: can't click zero numbers - they have no value yet
   deadCellColor:
     serializedVersion: 2
     rgba: 4286808963
   deadTextColor:
     serializedVersion: 2
     rgba: 4282729797
-  deadHelpMessage: can't click this one - no neighbours to add to
+  deadHelpMessage: can't click numbers with no neighbours to add to
   arrowsOnSound: {fileID: 0}
   arrowsOffSound: {fileID: 0}
 --- !u!114 &114352298406873856
